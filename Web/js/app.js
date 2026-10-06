@@ -5,6 +5,11 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function norm(s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
   function pd(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function slug(s) { return norm(s).replace(/[^a-z0-9]+/g, ""); }
+  function crest(name) {
+    var ini = name.split(/\s+/).map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+    return '<span class="rc"><img src="assets/clubs/' + slug(name) + '.png" alt="" loading="lazy" onerror="this.hidden=true;this.parentNode.classList.add(\'nf\')"><span class="i" aria-hidden="true">' + ini + '</span></span>';
+  }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
   /* [fecha, fecha ISO, rival, L/V, tantos DB, tantos rival, hora] — Fuente: URBA, Primera B 2026 */
@@ -48,7 +53,7 @@
   if (nextIdx >= 0) {
     var n = M[nextIdx], d = pd(n[1]);
     document.getElementById("nx-tab").innerHTML = '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>';
-    document.getElementById("nx-vs").textContent = "vs " + n[2];
+    document.getElementById("nx-vs").innerHTML = crest(n[2]) + "<span>vs " + esc(n[2]) + "</span>";
     document.getElementById("nx-sub").textContent = "Fecha " + n[0] + " · " + (n[3] === "L" ? "Local · Predio de Bernal" : "Visitante") + " · " + n[6] + " hs";
     var diff = Math.round((d - today) / 86400000);
     document.getElementById("nx-days").textContent = diff <= 0 ? "Se juega hoy" : (diff === 1 ? "Falta 1 día" : "Faltan " + diff + " días");
@@ -97,7 +102,7 @@
       }
       return '<li class="fx ' + (local ? "local" : "visit") + (i === nextIdx ? " up" : "") + '">' +
         '<div class="tab"><span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span></div>' +
-        '<div><div class="tag"><b>Fecha ' + m[0] + '</b><em>' + (local ? "Local vs." : "Visitante vs.") + '</em></div><p class="rival">' + esc(m[2]) + '</p></div>' + sc + '</li>';
+        '<div><div class="tag"><b>Fecha ' + m[0] + '</b><em>' + (local ? "Local vs." : "Visitante vs.") + '</em></div><p class="rival">' + crest(m[2]) + '<span>' + esc(m[2]) + '</span></p></div>' + sc + '</li>';
     }).join("");
     document.getElementById("fixture-list").innerHTML = html || '<li class="empty">No hay partidos con este filtro en esta ronda.</li>';
     document.getElementById("round-label").textContent = round === 1 ? "Primera ronda" : "Segunda ronda";
@@ -150,7 +155,7 @@
   /* portal de noticias */
   var N = [
     {c:"Infraestructura", d:"2026-09-27", t:"Master Plan Don Bosco Rugby: ordenar el club para crecer", x:"El Ateneo presentó su Master Plan 2026, una herramienta de planificación para ordenar el crecimiento de la infraestructura deportiva, social e institucional.", u:"https://donboscorugby.org/master-plan-don-bosco-rugby-infraestructura/"},
-    {c:"Hockey", d:"2026-09-23", t:"Hockey: encuentro de escuelita y mayores", x:"Don Bosco, Hockey Muni y el Polideportivo Solano se encontraron en el Estadio Nacional de Hockey Quilmes.", u:"#hockey"},
+    {c:"Hockey", d:"2026-09-23", t:"Hockey: encuentro de escuelita y mayores", x:"El 23 de septiembre a las 18:15 hs, Don Bosco, Hockey Muni y el Polideportivo Solano se encontraron en el Estadio Nacional de Hockey Quilmes.", u:"#hockey"},
     {c:"Eventos", d:"2026-09-05", t:"Un Encuentro de Otra Galaxia", x:"El predio de Bernal se llenó de personajes de Star Wars, con fotos, sables de luz y una colecta solidaria para el Jardín de Infantes del Hogar Escuela Don Bosco.", u:"https://donboscorugby.org/encuentro-de-otra-galaxia-2026/"},
     {c:"Infraestructura", d:"2026-04-24", t:"Inauguramos el nuevo ingreso al predio de Bernal", x:"Una mejora de infraestructura largamente anhelada que refleja el crecimiento del club y el compromiso de toda la comunidad.", u:"https://donboscorugby.org/inauguracion-nuevo-ingreso-predio-bernal/"},
     {c:"Comunidad", d:"2026-01-02", t:"Arranca el Verano en Don Bosco 2026", x:"Desde el 12 de enero, lunes y miércoles de 18:30 a 20:00, para chicos y chicas de 4 a 13 años. Juegos, deportes, campamentos y un amigo invitado gratis.", u:"https://twitter.com/rugbydonbosco/status/2007173689662652666"},
@@ -201,11 +206,9 @@
     c.querySelector("img").alt = "";
     track.appendChild(c);
   });
-  var playBtn = document.getElementById("car-play");
   var paused = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hold = false, last = 0, carry = 0, holdTimer = null;
   function half() { return track.scrollWidth / 2; }
-  function label() { playBtn.textContent = paused ? "Reanudar" : "Pausar"; playBtn.setAttribute("aria-pressed", String(paused)); }
   function tick(t) {
     var dt = last ? Math.min(t - last, 64) : 0; last = t;
     if (!paused && !hold) {
@@ -217,20 +220,34 @@
     if (h > 0 && view.scrollLeft >= h) view.scrollLeft -= h;
     requestAnimationFrame(tick);
   }
-  function step() { return Math.max(180, view.clientWidth * 0.7); }
-  document.getElementById("car-next").addEventListener("click", function () { view.scrollBy({ left: step(), behavior: "smooth" }); });
-  document.getElementById("car-prev").addEventListener("click", function () {
-    if (view.scrollLeft < step()) view.scrollLeft += half();
-    view.scrollBy({ left: -step(), behavior: "smooth" });
-  });
-  playBtn.addEventListener("click", function () { paused = !paused; label(); });
-  var box = view.parentNode;
-  box.addEventListener("mouseenter", function () { hold = true; });
-  box.addEventListener("mouseleave", function () { hold = false; });
-  box.addEventListener("focusin", function () { hold = true; });
-  box.addEventListener("focusout", function () { hold = false; });
   view.addEventListener("touchstart", function () { hold = true; clearTimeout(holdTimer); }, { passive: true });
   view.addEventListener("touchend", function () { clearTimeout(holdTimer); holdTimer = setTimeout(function () { hold = false; }, 2500); }, { passive: true });
-  label();
   requestAnimationFrame(tick);
+})();
+
+/* pestañas */
+(function () {
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".tabs")).map(function (bar) {
+    return { bar: bar, btns: Array.prototype.slice.call(bar.querySelectorAll("button")), panels: Array.prototype.slice.call(bar.parentNode.querySelectorAll(".panel")) };
+  });
+  function show(g, id) {
+    g.panels.forEach(function (p) { p.hidden = p.id !== id; });
+    g.btns.forEach(function (b) { var on = b.getAttribute("data-p") === id; b.setAttribute("aria-pressed", String(on)); b.setAttribute("aria-selected", String(on)); });
+  }
+  function find(id) { for (var i = 0; i < groups.length; i++) if (groups[i].panels.some(function (p) { return p.id === id; })) return groups[i]; return null; }
+  groups.forEach(function (g) {
+    show(g, g.panels[0].id);
+    g.bar.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) show(g, b.getAttribute("data-p")); });
+  });
+  function go(id, smooth) {
+    var g = find(id); if (!g) return false;
+    show(g, id);
+    g.bar.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    return true;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    if (go(a.getAttribute("href").slice(1), true)) e.preventDefault();
+  });
+  if (location.hash) go(location.hash.slice(1), false);
 })();
