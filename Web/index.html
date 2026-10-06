@@ -2,10 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1750" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060a2c" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Don Bosco Rugby">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Don Bosco Rugby</title>
 <meta name="description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
 <link rel="icon" href="assets/crest.png">
+<link rel="apple-touch-icon" href="assets/crest.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap">
@@ -13,30 +20,30 @@
 </head>
 <body>
 <nav class="menu" aria-label="Secciones">
+  <button type="button" class="nv prev" aria-label="Ver ítems anteriores del menú">&#8249;</button>
   <ul>
     <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#sumate">Sumate</a></li>
     <li><a href="#resultados">Resultados</a></li>
     <li><a href="#plantel">Formación</a></li>
-    <li><a href="#categorias">Categorías</a></li>
     <li><a href="#hockey">Hockey</a></li>
-    <li><a href="#noticias">Noticias</a></li>
     <li><a href="#club">El club</a></li>
-    <li><a href="#sumate">Sumate</a></li>
+    <li><a href="#noticias">Noticias</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
+  <button type="button" class="nv next" aria-label="Ver más ítems del menú">&#8250;</button>
 </nav>
 
 <div class="top">
   <svg class="stripes" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
     <g>
       <polygon class="s1" points="0,0 600,75 600,105 0,30"/>
-      <polygon class="s2" points="0,30 600,105 600,120 0,45"/>
-      <polygon class="s3" points="0,45 600,120 600,155 0,80"/>
-      <polygon class="s4" points="0,80 600,155 600,165 0,90"/>
+      <polygon class="s2" points="0,30 600,105 600,135 0,60"/>
+      <polygon class="s3" points="0,60 600,135 600,165 0,90"/>
       <polygon class="s1" points="1200,0 600,75 600,105 1200,30"/>
-      <polygon class="s2" points="1200,30 600,105 600,120 1200,45"/>
-      <polygon class="s3" points="1200,45 600,120 600,155 1200,80"/>
-      <polygon class="s4" points="1200,80 600,155 600,165 1200,90"/>
+      <polygon class="s2" points="1200,30 600,105 600,135 1200,60"/>
+      <polygon class="s3" points="1200,60 600,135 600,165 1200,90"/>
     </g>
   </svg>
   <img class="crest" src="assets/crest.png" alt="Escudo del Ateneo Don Bosco" width="112" height="112">
@@ -75,6 +82,179 @@
       <a class="src-link" href="#contacto">Quiero ser sponsor</a>
     </div>
   </section>
+
+  <div class="bandera" aria-hidden="true"></div>
+
+  <section id="categorias">
+    <div class="head">
+      <h2 class="mega"><span class="b">Todas las</span> <span class="r">categorías</span></h2>
+      <p class="sub">Desde la escuelita hasta la Primera, en Don Bosco hay un lugar para cada edad.</p>
+    </div>
+    <div class="seg tabs" role="tablist" aria-label="Categorías"><button type="button" role="tab" data-p="superior" aria-pressed="false">Plantel superior</button><button type="button" role="tab" data-p="femenino" aria-pressed="false">Rugby femenino</button><button type="button" role="tab" data-p="infantil" aria-pressed="false">Infantiles</button><button type="button" role="tab" data-p="juvenil" aria-pressed="false">Juveniles</button><button type="button" role="tab" data-p="veteranos" aria-pressed="false">Veteranos</button><button type="button" role="tab" data-p="hockey" aria-pressed="false">Hockey</button></div>
+    <div class="panels">
+      <div class="panel" id="superior" role="tabpanel">
+    <div class="sport">
+      <div>
+        <p class="kicker">URBA · Primera B</p>
+        <h2 class="mega">Plantel superior</h2>
+        <p class="lead">El equipo mayor del club. Cada sábado se juegan todas las divisiones en la misma fecha y la Primera compite en la Primera B de la URBA, a la que ascendió en 2017.</p>
+        <ul class="cats" aria-label="Categorías">
+          <li>Primera</li>
+          <li>Intermedia</li>
+          <li>Pre Intermedia A</li>
+          <li>Pre Intermedia B</li>
+          <li>Pre Intermedia C</li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/plantelsup-web.jpg" alt="Plantel superior de Don Bosco" width="1400" height="933" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Entrenamiento</small><b>Lunes</b><span>19:30 a 21:30 hs</span></div>
+        <div class="slot"><small>Entrenamiento</small><b>Martes y jueves</b><span>20:30 a 22:30 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Sábados</b></div>
+      </div>
+    </div>
+      </div>
+      <div class="panel" id="femenino" role="tabpanel">
+    <div class="sport rev">
+      <div>
+        <p class="kicker">Las chicas del Bosco</p>
+        <h2 class="mega">Rugby femenino</h2>
+        <p class="lead">Las chicas también juegan. El femenino mayor está jugando en Reubicación. El club también tiene femenino juvenil.</p>
+        <ul class="cats" aria-label="Categorías">
+          <li>Juveniles</li>
+          <li>Plantel superior</li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/femenino-web.jpg" alt="Scrum del plantel femenino de Don Bosco con la camiseta del club" width="1400" height="933" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Entrenamiento</small><b>Lunes, miércoles y viernes</b><span>19:30 a 21:00 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Domingos</b></div>
+      </div>
+    </div>
+      </div>
+      <div class="panel" id="infantil" role="tabpanel">
+    <div class="sport">
+      <div>
+        <p class="kicker">Desde los 4 años</p>
+        <h2 class="mega">Rugby infantiles</h2>
+        <p class="lead">Acá empieza todo. Los más chicos descubren el rugby jugando, hacen amigos y aprenden los valores del club con la camiseta del Bosco.</p>
+        <ul class="cats" aria-label="Categorías">
+          <li>Escuelita</li>
+          <li>M8</li>
+          <li>M9</li>
+          <li>M10</li>
+          <li>M11</li>
+          <li>M12</li>
+          <li>M13</li>
+          <li>M14</li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/infantiles-web.jpg" alt="Chicos del rugby infantil de Don Bosco" width="1400" height="933" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Escuelita a M12</small><b>Lunes y miércoles</b><span>18:30 a 20:00 hs</span></div>
+        <div class="slot"><small>M13 y M14</small><b>Martes y jueves</b><span>18:30 a 20:00 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Sábados</b></div>
+      </div>
+    </div>
+      </div>
+      <div class="panel" id="juvenil" role="tabpanel">
+    <div class="sport rev">
+      <div>
+        <p class="kicker">Formación</p>
+        <h2 class="mega">Rugby juveniles</h2>
+        <p class="lead">El camino hacia el plantel superior. Acá se aprende a jugar, a compartir y a sentir la camiseta, para llegar a Primera con el Bosco en el corazón.</p>
+        <ul class="cats" aria-label="Categorías">
+          <li>M15</li>
+          <li>M16</li>
+          <li>M17</li>
+          <li>M19</li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/juveniles-web.jpg" alt="Jugadores juveniles de Don Bosco trotando en la cancha con la camiseta del club" width="1400" height="933" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Entrenamiento</small><b>Martes y jueves</b><span>18:30 a 21:00 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Domingos</b></div>
+      </div>
+    </div>
+      </div>
+      <div class="panel" id="veteranos" role="tabpanel">
+    <div class="sport">
+      <div>
+        <p class="kicker">Ocelotes</p>
+        <h2 class="mega">Veteranos</h2>
+        <p class="lead">La división de veteranos del club. Se creó para mantener la camaradería entre ex jugadores y colaborar en la enseñanza del rugby. Su nombre viene de una marca de botines antigua.</p>
+        <ul class="cats" aria-label="Quiénes juegan">
+          <li>Mayores de 35 años</li>
+          <li>Ex jugadores y padres</li>
+          <li>Tercer tiempo</li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/ocelotes-web.jpg" alt="Ocelotes, veteranos de Don Bosco" width="1400" height="940" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Entrenamiento</small><b>Lunes y miércoles</b><span>20:30 a 22:30 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Según se concrete</b></div>
+      </div>
+    </div>
+      </div>
+      <div class="panel" id="hockey" role="tabpanel">
+    <div class="sport rev">
+      <div>
+        <p class="kicker">Escuelita y mayores</p>
+        <h2 class="mega">Hockey</h2>
+        <p class="lead">Un lugar para jugar, juntarse y hacer familia. Desde la escuelita hasta las mayores, el hockey también se vive con la camiseta del Bosco.</p>
+        <ul class="cats" aria-label="Categorías">
+          <li>Infantiles</li>
+          <li>Mayores</li>
+        </ul>
+        <div class="btns"><a class="btn" href="#noticias">Ver novedades</a></div>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/hockey-web.jpg" alt="Hockey de Don Bosco" width="1400" height="933" loading="lazy"></div>
+      <div class="sched">
+        <h3>Entrenamientos y partidos</h3>
+        <div class="slot"><small>Escuela de hockey</small><b>Viernes</b><span>17:30 a 19:00 hs</span></div>
+        <div class="slot match"><small>Partidos</small><b>Próximamente</b></div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bandera" aria-hidden="true"></div>
+
+  <section id="sumate">
+    <div class="head">
+      <h2 class="mega"><span class="b">Sumate</span> <span class="r">al Bosco</span></h2>
+      <p class="spaced">Cinco razones</p>
+    </div>
+    <div class="join">
+      <ol class="reasons">
+        <li><div><b>Deporte</b><span>Es un medio más que un fin en sí mismo.</span></div></li>
+        <li><div><b>Rugby &amp; Hockey</b><span>Sus valores valen dentro y fuera de la cancha. Son valores para la vida.</span></div></li>
+        <li><div><b>Ateneo</b><span>Un lugar de encuentro donde además del cuerpo se cultivan el espíritu y la cultura de los jóvenes.</span></div></li>
+        <li><div><b>Bien común</b><span>La educación de los jóvenes a través del deporte como herramienta formativa.</span></div></li>
+        <li><div><b>Comunidad</b><span>Amistad, comprensión y solidaridad bajo la bendición de San Juan Bosco.</span></div></li>
+      </ol>
+      <div class="cta">
+        <p class="lema">Hay un lugar<br><span>para vos en el Bosco</span></p>
+        <p>Hacete socio del Don Bosco y sumate a la familia tricolor. Contanos cuál es tu razón para ser parte del Ateneo.</p>
+        <a class="btn" href="#contacto">Quiero sumarme</a>
+        <p class="sede"><b>Sede social “El Ceibo”</b><br>9 de Julio 345, Bernal</p>
+        <div class="social">
+          <a href="https://www.instagram.com/rugbydonbosco" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/rugby.don.bosco" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://twitter.com/RugbyDonBosco" target="_blank" rel="noopener">X</a>
+          <a href="https://www.youtube.com/@DonBoscoRugbyOficial" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bandera" aria-hidden="true"></div>
 
   <section id="resultados">
     <div class="head">
@@ -119,6 +299,8 @@
     </div>
   </section>
 
+  <div class="bandera" aria-hidden="true"></div>
+
   <section id="plantel">
     <div class="panel-title">
       <h3>Formación <span class="r">XV</span></h3>
@@ -126,115 +308,12 @@
       <span class="chip red">Ganó 28 – 10</span>
     </div>
     <div class="xvgrid">
-      <div><h4>Delanteros · 1 al 8</h4><ol class="xv" id="xv-f"></ol></div>
+      <div><h4>Forwards · 1 al 8</h4><ol class="xv" id="xv-f"></ol></div>
       <div><h4>Backs · 9 al 15</h4><ol class="xv" id="xv-b"></ol></div>
     </div>
   </section>
 
-  <section id="categorias">
-    <div class="head">
-      <h2 class="mega"><span class="b">Todas las</span> <span class="r">categorías</span></h2>
-      <p class="sub">Del primer pase a la primera línea. En Don Bosco hay un lugar para cada edad.</p>
-    </div>
-    <div class="seg tabs" role="tablist" aria-label="Categorías"><button type="button" role="tab" data-p="superior" aria-pressed="false">Plantel superior</button><button type="button" role="tab" data-p="femenino" aria-pressed="false">Rugby femenino</button><button type="button" role="tab" data-p="infantil" aria-pressed="false">Infantil</button><button type="button" role="tab" data-p="juvenil" aria-pressed="false">Juvenil</button><button type="button" role="tab" data-p="veteranos" aria-pressed="false">Ocelotes</button><button type="button" role="tab" data-p="hockey" aria-pressed="false">Hockey</button></div>
-    <div class="panels">
-      <div class="panel" id="superior" role="tabpanel">
-    <div class="sport">
-      <div>
-        <p class="kicker">URBA · Primera B</p>
-        <h2 class="mega">Plantel superior</h2>
-        <p class="lead">Primera, Intermedia y las tres Pre (A, B y C) juegan cada sábado en la misma fecha. La Primera compite en la Primera B de la URBA, a la que ascendió en 2017.</p>
-        <div class="btns"><a class="btn" href="#resultados">Ver el fixture</a><a class="btn ghost" href="#plantel">Ver la formación</a></div>
-      </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
-    </div>
-      </div>
-      <div class="panel" id="femenino" role="tabpanel">
-    <div class="sport rev">
-      <div>
-        <p class="kicker">Desde 2025 en URBA</p>
-        <h2 class="mega">Rugby femenino</h2>
-        <p class="lead">Las chicas también juegan. El femenino mayor jugó su primer partido oficial en URBA en el circuito de Seven 2025 y ganó en esa primera jornada. El club también tiene femenino juvenil.</p>
-        <ul class="rows one">
-          <li><b>Debut</b>25 de mayo de 2025, primer partido oficial del plantel mayor femenino.</li>
-          <li><b>Plantel</b>11 jugadoras en el debut.</li>
-          <li><b>Capitanía</b>Caro, capitana, y Yamila, subcapitana.</li>
-          <li><b>Cómo empezó</b>Unas seis madres pioneras lo impulsaron durante dos años, para que las chicas puedan seguir jugando después de los 14.</li>
-        </ul>
-      </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
-    </div>
-      </div>
-      <div class="panel" id="infantil" role="tabpanel">
-    <div class="sport">
-      <div>
-        <p class="kicker">Desde los 4 años</p>
-        <h2 class="mega">Rugby infantil</h2>
-        <p class="lead">Escuelita y divisiones infantiles, desde los 4 años. En enero se juega el Verano en Don Bosco: lunes y miércoles de 18:30 a 20:00, para chicos y chicas de 4 a 13 años.</p>
-        <ul class="rows one">
-          <li><b>Fecha URBA 2023</b>20 de mayo de 2023, Grupo C. Don Bosco y el CUQ fueron sedes compartidas.</li>
-          <li><b>Categorías</b>M9, M10, M11 y M14 jugaron en Don Bosco.</li>
-          <li><b>Clubes</b>Centro Naval, Los Matreros, Lanús RC, CAR, Varela Jr, CUQ y Don Bosco.</li>
-          <li><b>Jornada</b>Más de 400 jugadores, seleccionados combinados en M9, M10 y M11, y tercer tiempo compartido.</li>
-        </ul>
-      </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
-    </div>
-      </div>
-      <div class="panel" id="juvenil" role="tabpanel">
-    <div class="sport rev">
-      <div>
-        <p class="kicker">Formación</p>
-        <h2 class="mega">Rugby juvenil</h2>
-        <p class="lead">El camino hacia el plantel superior. Los juveniles participan de campus, como el de Tandil 2025, y de encuentros con otros clubes.</p>
-      </div>
-      <div class="vis ph"><img src="assets/dbr/juveniles-web.jpg" alt="Jugadores juveniles de Don Bosco trotando en la cancha con la camiseta del club" width="1400" height="933" loading="lazy"></div>
-    </div>
-      </div>
-      <div class="panel" id="veteranos" role="tabpanel">
-    <div class="sport">
-      <div>
-        <p class="kicker">Veteranos</p>
-        <h2 class="mega">Ocelotes</h2>
-        <p class="lead">La división de veteranos del club. Se creó para mantener la camaradería entre ex jugadores y colaborar en la enseñanza del rugby. Su nombre viene de una marca de botines antigua. En 2025 jugó el Classic contra Albatros.</p>
-        <ul class="rows one">
-          <li><b>Quiénes pueden sumarse</b>Ex jugadores, padres de jugadores infantiles y juveniles, y socios mayores de 35 años.</li>
-          <li><b>Entrenan</b>Lunes y miércoles a las 20:30 en el campo de deportes de Bernal.</li>
-          <li><b>Juegan</b>Cada quince días, con tercer tiempo.</li>
-          <li><b>Capitán y subcapitán</b>Pablo “Pintin” Corbelleri y Gonzalo “Gonza” Reiris.</li>
-        </ul>
-        <div class="btns"><a class="btn" href="https://www.instagram.com/ocelotesdbr" target="_blank" rel="noopener">Instagram de los Ocelotes</a></div>
-      </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
-    </div>
-      </div>
-      <div class="panel" id="hockey" role="tabpanel">
-    <div class="sport rev">
-      <div>
-        <p class="kicker">Escuelita y mayores</p>
-        <h2 class="mega">Hockey</h2>
-        <p class="lead">Una actividad social del club. La escuelita y los mayores ya juegan encuentros con otras instituciones de Quilmes.</p>
-        <div class="btns"><a class="btn" href="#noticias">Ver novedades</a></div>
-      </div>
-      <div class="photo"><img src="assets/hockey.jpg" alt="Jugadora de hockey de Don Bosco con la camiseta del club" width="264" height="542"></div>
-    </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="noticias">
-    <div class="head">
-      <h2 class="mega"><span class="b">Noti</span><span class="r">cias</span></h2>
-      <p class="sub">Lo que pasa en el Bosco: partidos, obras, eventos y comunidad.</p>
-    </div>
-    <div class="ntools">
-      <div class="seg" id="seg-news" role="group" aria-label="Categoría de noticias"></div>
-      <div class="search"><input id="nsearch" type="search" placeholder="Buscar una nota" aria-label="Buscar una nota" autocomplete="off"></div>
-    </div>
-    <div class="news" id="news"></div>
-    <div class="nmore"><button type="button" class="btn ghost" id="nmore">Ver más notas</button></div>
-    <p class="src" style="justify-content:center"><a href="https://donboscorugby.org/news/" target="_blank" rel="noopener">Archivo completo en la web histórica</a></p>
-  </section>
+  <div class="bandera" aria-hidden="true"></div>
 
   <section id="club">
     <div class="head">
@@ -244,13 +323,9 @@
       <div class="story">
         <p class="big">El Ateneo Cultural y Deportivo Don Bosco nació el 21 de marzo de 1967, por iniciativa de Norberto E. Chindemi, a la luz del ejemplo de Don Bosco, “padre y maestro de la juventud”.</p>
         <p>Hizo propios los valores del rugby y los puso al servicio de un lugar de encuentro donde, además del cuerpo, se cultivan el espíritu y la cultura de los jóvenes. Su código de conducta es el Decálogo del Ateneísta, que es un artículo del Estatuto.</p>
-        <div class="facts">
-          <div class="fact"><b>Sabías que</b>La Secretaría escribió la historia del club en más de 10 direcciones. Una secretaría itinerante.</div>
-          <div class="fact"><b>Sabías que</b>El primer partido en el que se iba a estrenar la casaca del Ateneo se suspendió por lluvia.</div>
-        </div>
       </div>
     </div>
-    <div class="seg tabs" role="tablist" aria-label="El club"><button type="button" role="tab" data-p="historia" aria-pressed="false">Historia</button><button type="button" role="tab" data-p="predio" aria-pressed="false">El predio</button><button type="button" role="tab" data-p="consejo" aria-pressed="false">Consejo Directivo</button><button type="button" role="tab" data-p="presidentes" aria-pressed="false">Presidentes</button><button type="button" role="tab" data-p="capitanes" aria-pressed="false">Capitanes</button><button type="button" role="tab" data-p="decalogo" aria-pressed="false">Decálogo</button><button type="button" role="tab" data-p="contacto" aria-pressed="false">Contacto</button></div>
+    <div class="seg tabs" role="tablist" aria-label="El club"><button type="button" role="tab" data-p="historia" aria-pressed="false">Historia</button><button type="button" role="tab" data-p="predio" aria-pressed="false">El predio</button><button type="button" role="tab" data-p="ceibo" aria-pressed="false">El Ceibo</button><button type="button" role="tab" data-p="consejo" aria-pressed="false">Consejo Directivo</button><button type="button" role="tab" data-p="presidentes" aria-pressed="false">Presidentes</button><button type="button" role="tab" data-p="capitanes" aria-pressed="false">Capitanes</button><button type="button" role="tab" data-p="decalogo" aria-pressed="false">Decálogo</button><button type="button" role="tab" data-p="contacto" aria-pressed="false">Contacto</button></div>
     <div class="panels">
       <div class="panel" id="historia" role="tabpanel">
     <div class="sport">
@@ -268,7 +343,10 @@
           <li><b>2017</b>El 13 de octubre se inaugura la casa de Bernal. Ese año asciende a Primera B.</li>
         </ul>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
+      <div class="vis ph duo">
+        <img src="assets/dbr/dbr1972-web.jpg" alt="Foto histórica de 1972: equipo infantil del Ateneo Don Bosco con su entrenador" width="1400" height="995" loading="lazy">
+        <img src="assets/dbr/dbr1985.jpg" alt="Foto histórica de 1985: plantel de Don Bosco en la cancha" width="960" height="492" loading="lazy">
+      </div>
     </div>
       </div>
       <div class="panel" id="predio" role="tabpanel">
@@ -286,7 +364,24 @@
           <li><b>Auto</b>Autopista Dr. Ricardo Balbín, salida Km 17, colectora Este.</li>
         </ul>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
+      <div class="vis ph"><img src="assets/dbr/predio.jpg" alt="Palos de rugby y cancha del predio de Bernal al atardecer" width="960" height="719" loading="lazy"></div>
+    </div>
+      </div>
+      <div class="panel" id="ceibo" role="tabpanel">
+    <div class="sport">
+      <div>
+        <p class="kicker">Sede social</p>
+        <h2 class="mega">El Ceibo</h2>
+        <p class="lead">El lugar donde el Ateneo se encuentra fuera de la cancha, en pleno centro de Bernal. Un punto de reunión para los jugadores de todas las divisiones y para las familias.</p>
+        <ul class="rows">
+          <li><b>Dirección</b>9 de Julio 345, entre Chacabuco y Maipú, Bernal.</li>
+          <li><b>Desde</b>2003, por un acuerdo con la comisión de El Ceibo.</li>
+          <li><b>El Ceibo</b>Funciona en Bernal desde 1942 y tiene personería jurídica desde 1965.</li>
+          <li><b>Qué se hace</b>Actividades sociales y culturales del club, que crecieron desde el acuerdo.</li>
+          <li><b>Teléfono</b><a href="tel:+5491141571371">+54 9 11 4157-1371</a></li>
+        </ul>
+      </div>
+      <div class="vis ph"><img src="assets/dbr/ceibo2.jpg" alt="Frente de la sede social, el Club Social El Ceibo, iluminado de azul y rojo de noche" width="1280" height="1707" loading="lazy"></div>
     </div>
       </div>
       <div class="panel" id="consejo" role="tabpanel">
@@ -309,7 +404,7 @@
           <li><b>Revisores de cuentas</b>Pablo Elias, Paula Cifuentes, Gonzalo Villalba, Carlos Seijas y Mateo Chimenti</li>
         </ul>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
+      <div class="vis ph"><img src="assets/dbr/consejo-v2-web.jpg" alt="Consejo Directivo del Ateneo Don Bosco, gestión 2025–2027" width="1024" height="1536" loading="lazy"></div>
     </div>
       </div>
       <div class="panel" id="presidentes" role="tabpanel">
@@ -338,7 +433,6 @@
           <li><b>2025–actual</b>Sebastian Pastor</li>
         </ul>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
     </div>
       </div>
       <div class="panel" id="capitanes" role="tabpanel">
@@ -346,7 +440,8 @@
       <div>
         <p class="kicker">Líderes dentro de la cancha</p>
         <h2 class="mega">Capitanes</h2>
-        <p class="lead">El capitán es líder, comunicador y representante del equipo, adentro y afuera del campo. El femenino mayor se sumó en 2024.</p>
+        <p class="lead">El capitán es líder, comunicador y representante del equipo, adentro y afuera del campo.</p>
+        <h3 class="grp">Rugby masculino</h3>
         <ul class="rows">
           <li><b>1967–1972</b>Jorge Gilges</li>
           <li><b>1973–1974</b>Carlos Proyeno</li>
@@ -363,11 +458,14 @@
           <li><b>2009–2015</b>Agustín Rao</li>
           <li><b>2016–2017</b>Agustín Gori</li>
           <li><b>2018–2023</b>Lizandro Bigliardi</li>
-          <li><b>2024–2025 · masculino</b>Gonzalo Gadano</li>
-          <li><b>2024–2025 · femenino</b>Carolina Crivaro</li>
+          <li><b>2024–2025</b>Gonzalo Gadano</li>
+          <li><b>2026–actualidad</b>Fernando Gabba</li>
+        </ul>
+        <h3 class="grp">Rugby femenino</h3>
+        <ul class="rows">
+          <li><b>2024–actualidad</b>Carolina Crivaro</li>
         </ul>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
     </div>
       </div>
       <div class="panel" id="decalogo" role="tabpanel">
@@ -379,7 +477,7 @@
         <ol class="reasons dec">
           <li><div><span>Apoyará siempre a sus compañeros, estimulando el rendimiento del conjunto.</span></div></li>
           <li><div><span>No empleará la violencia ni realizará actos reñidos con la moral y las buenas costumbres.</span></div></li>
-          <li><div><span>Respetará a sus ocasionales adversarios actuando caballerosamente.</span></div></li>
+          <li><div><span>Respetará a sus ocasionales adversarios actuando caballerescamente.</span></div></li>
           <li><div><span>No se dará por vencido y luchará hasta el final con entusiasmo y deseos de triunfar.</span></div></li>
           <li><div><span>Actuará lealmente sin emplear recursos deshonestos.</span></div></li>
           <li><div><span>Acatará las decisiones del árbitro.</span></div></li>
@@ -389,7 +487,7 @@
           <li><div><span>Ofrecerá su actividad a Dios por intermedio de Don Bosco, a quien el Ateneo procurará entronizar como Patrono del Deporte Nacional.</span></div></li>
         </ol>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
+      <div class="vis ph logo"><img src="assets/dbr/escudo-ateneo.png" alt="Escudo del Ateneo Cultural y Deportivo Don Bosco" width="600" height="657" loading="lazy"></div>
     </div>
       </div>
       <div class="panel" id="contacto" role="tabpanel">
@@ -410,32 +508,19 @@
     </div>
   </section>
 
-  <section id="sumate">
+  <div class="bandera" aria-hidden="true"></div>
+
+  <section id="noticias">
     <div class="head">
-      <h2 class="mega"><span class="b">Sumate</span> <span class="r">al Bosco</span></h2>
-      <p class="spaced">Cinco razones</p>
+      <h2 class="mega"><span class="b">Noti</span><span class="r">cias</span></h2>
+      <p class="sub">Lo que pasa en el Bosco: partidos, obras, eventos y comunidad.</p>
     </div>
-    <div class="join">
-      <ol class="reasons">
-        <li><div><b>Deporte</b><span>Es un medio más que un fin en sí mismo.</span></div></li>
-        <li><div><b>Rugby</b><span>Sus valores valen dentro y fuera de la cancha. Son valores para la vida.</span></div></li>
-        <li><div><b>Ateneo</b><span>Un lugar de encuentro donde además del cuerpo se cultivan el espíritu y la cultura de los jóvenes.</span></div></li>
-        <li><div><b>Bien común</b><span>La educación de los jóvenes a través del deporte como herramienta formativa.</span></div></li>
-        <li><div><b>Unos por otros, Dios por todos</b><span>Amistad, comprensión y solidaridad bajo la bendición de San Juan Bosco.</span></div></li>
-      </ol>
-      <div class="cta">
-        <p class="lema">Unos por otros,<br><span>Dios por todos</span></p>
-        <p>Hacete socio del Don Bosco y sumate al scrum. Contanos cuál es tu razón para ser parte del Ateneo.</p>
-        <a class="btn" href="#contacto">Quiero sumarme</a>
-        <p class="sede"><b>Sede social “El Ceibo”</b><br>9 de Julio 345, Bernal</p>
-        <div class="social">
-          <a href="https://www.instagram.com/rugbydonbosco" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/rugby.don.bosco" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://twitter.com/RugbyDonBosco" target="_blank" rel="noopener">X</a>
-          <a href="https://www.youtube.com/@DonBoscoRugbyOficial" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </div>
+    <div class="ntools">
+      <div class="seg" id="seg-news" role="group" aria-label="Categoría de noticias"></div>
+      <div class="search"><input id="nsearch" type="search" placeholder="Buscar una nota" aria-label="Buscar una nota" autocomplete="off"></div>
     </div>
+    <div class="news" id="news"></div>
+    <div class="nmore"><button type="button" class="btn ghost" id="nmore">Ver más notas</button></div>
   </section>
 </main>
 

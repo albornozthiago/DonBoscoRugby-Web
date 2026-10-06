@@ -251,3 +251,19 @@
   });
   if (location.hash) go(location.hash.slice(1), false);
 })();
+/* flechas del menú de arriba (solo se ven en celulares): mueven los ítems y se apagan en los extremos */
+(function () {
+  var nav = document.querySelector("nav.menu"); if (!nav) return;
+  var ul = nav.querySelector("ul"), prev = nav.querySelector(".nv.prev"), next = nav.querySelector(".nv.next");
+  if (!ul || !prev || !next) return;
+  function upd() {
+    prev.classList.toggle("off", ul.scrollLeft <= 2);
+    next.classList.toggle("off", ul.scrollLeft + ul.clientWidth >= ul.scrollWidth - 2);
+  }
+  function move(dir) { ul.scrollBy({ left: dir * ul.clientWidth * 0.7, behavior: "smooth" }); }
+  prev.addEventListener("click", function () { move(-1); });
+  next.addEventListener("click", function () { move(1); });
+  ul.addEventListener("scroll", upd, { passive: true });
+  window.addEventListener("resize", upd);
+  upd();
+})();
