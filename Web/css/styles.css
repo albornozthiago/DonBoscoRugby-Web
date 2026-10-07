@@ -72,12 +72,16 @@ nav.menu a:hover { background: var(--red); }
 nav.menu .nv { display: none; }
 @media (max-width: 900px) {
   nav.menu { display: flex; overflow: hidden; }
-  nav.menu ul { flex: 1; min-width: 0; margin: 0; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; }
+  nav.menu ul { flex: 1; min-width: 0; margin: 0; padding-inline: 44px; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; }
   nav.menu ul::-webkit-scrollbar { display: none; }
-  nav.menu .nv { display: block; flex: none; width: 40px; padding: 0 0 4px; border: 0; background: var(--navy-deep); color: #fff; font-size: 28px; line-height: 1; cursor: pointer; transition: opacity .2s; }
-  nav.menu .nv.off { opacity: 0; pointer-events: none; }
-  nav.menu .nv.next { box-shadow: -10px 0 10px -4px var(--navy-deep); }
-  nav.menu .nv.prev { box-shadow: 10px 0 10px -4px var(--navy-deep); }
+  /* flechas: chevron dibujado con bordes (misma altura y simetría en las dos) y degradé hacia los ítems */
+  nav.menu .nv { display: block; position: absolute; top: 0; bottom: 0; z-index: 1; width: 40px; padding: 0; border: 0; background: var(--navy-deep); color: #fff; font-size: 0; line-height: 0; cursor: pointer; }
+  /* el chevron se centra en la mitad exacta del botón con posición absoluta (los <button> de Safari no centran bien con flex) */
+  nav.menu .nv::before { content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; border: solid currentColor; border-width: 0 3px 3px 0; }
+  nav.menu .nv.nv-next::before { transform: translate(-70%, -50%) rotate(-45deg); }
+  nav.menu .nv.nv-prev::before { transform: translate(-30%, -50%) rotate(135deg); }
+  nav.menu .nv.nv-next { right: 0; box-shadow: -12px 0 12px -2px var(--navy-deep); }
+  nav.menu .nv.nv-prev { left: 0; box-shadow: 12px 0 12px -2px var(--navy-deep); }
 }
 
 .mega { font-family: var(--font-display); line-height: .86; letter-spacing: .005em; text-transform: uppercase; }
@@ -207,9 +211,11 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .sport:has(.vis.ph) { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
 .sport .vis.ph { order: -1; align-self: start; background: none; min-height: 0; overflow: hidden; aspect-ratio: 4 / 5; }
 .sport .vis.ph img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
-/* par de fotos: una abajo de la otra, cada una con su proporción real, sin recortes */
-.sport .vis.ph.duo { display: flex; flex-direction: column; gap: 6px; aspect-ratio: auto; }
-.sport .vis.ph.duo img { width: 100%; height: auto; min-height: 0; }
+/* par de fotos: una abajo de la otra, ocupan todo el alto de la sección (cada foto es absoluta dentro de su caja para que Safari no las rompa) */
+.sport .vis.ph.duo { display: flex; flex-direction: column; gap: 6px; aspect-ratio: auto; align-self: stretch; min-height: 380px; }
+.sport .vis.ph.duo .shot { position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; }
+.sport .vis.ph.duo .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sport .vis.ph.duo .shot:first-child img { object-position: center 30%; }
 /* escudo con fondo transparente: se muestra entero, sin recorte ni línea roja */
 .sport .vis.ph.logo { border-bottom: 0; overflow: visible; }
 .sport .vis.ph.logo img { object-fit: contain; }
@@ -270,6 +276,27 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
   linear-gradient(135deg, transparent 0 38%, rgba(255,255,255,.9) 38% 44%, transparent 44%),
   linear-gradient(135deg, var(--navy-deep) 0 38%, var(--navy) 38%); display: grid; place-items: center; }
 .art span { font-family: var(--font-display); font-size: clamp(36px, 13vw, 64px); max-width: 100%; overflow-wrap: anywhere; text-align: center; color: #fff; opacity: .92; letter-spacing: .02em; }
+.art.ph { min-height: 0; background: var(--navy-deep); display: block; aspect-ratio: 16 / 9; overflow: hidden; margin: -18px -18px 0; }
+.card.f .art.ph { margin: 0; aspect-ratio: auto; min-height: 220px; }
+.art.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post { padding-top: 56px; }
+.post .back { display: inline-block; margin-bottom: 20px; font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
+.post article { max-width: 760px; margin-inline: auto; }
+.post .meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-bottom: 12px; }
+.post .cat-t { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; background: var(--red); color: #fff; padding: 3px 8px; }
+.post time { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.post h1 { font-size: clamp(38px, 7vw, 64px); color: var(--accent-text); overflow-wrap: anywhere; }
+.post .lead { margin-top: 14px; font-size: 17px; font-weight: 600; color: var(--muted); }
+.post figure { margin: 24px 0 0; }
+.post figure img { display: block; width: 100%; height: auto; border-top: 6px solid var(--red); background: var(--navy-deep); }
+.post .body { margin-top: 8px; }
+.post .body h2 { margin-top: 32px; font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 5vw, 38px); line-height: 1; text-transform: uppercase; color: var(--accent-text); }
+.post .body p { margin-top: 14px; }
+.post .body ul { margin: 14px 0 0; padding-left: 20px; display: grid; gap: 8px; }
+.post .body ul.logos { list-style: none; padding: 0; margin-top: 20px; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 16px; }
+.post .logos li { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.post .logos img { width: 100%; max-width: 120px; height: 96px; object-fit: contain; }
+.post .btns { max-width: 760px; margin: 40px auto 0; }
 .nmore { text-align: center; margin-top: 18px; }
 .btn { display: inline-block; background: var(--red); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 14px 22px; border: 0; cursor: pointer; }
 .btn:hover { background: var(--navy-deep); }
@@ -328,6 +355,9 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .photo, .sport .vis { order: -1; }
   .sport:has(.vis.ph) { grid-template-columns: minmax(0, 1fr); }
   .sport .vis.ph { aspect-ratio: 16 / 9; }
+  .sport .vis.ph.duo { min-height: 0; }
+  .sport .vis.ph.duo .shot { flex: none; }
+  .sport .vis.ph.duo .shot img { position: static; height: auto; }
 
   #consejo .vis.ph { aspect-ratio: 1 / 1; }
   .sport.rev > :first-child { order: 0; }
@@ -360,6 +390,43 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
 @media (max-width: 560px) {
     .car-item { height: 84px; padding: 0 20px; }
   .car-item img { height: 44px; max-width: 160px; }
+}
+
+/* animaciones: todo dentro de no-preference, así quien pidió menos movimiento ve el sitio quieto. Solo se animan transform y opacity */
+@media (prefers-reduced-motion: no-preference) {
+  /* portada: las franjas entran desde los costados y se juntan en el escudo, que aparece al final */
+  @keyframes stripe-l { from { transform: translateX(-640px); } }
+  @keyframes stripe-r { from { transform: translateX(640px); } }
+  @keyframes crest-in { from { opacity: 0; transform: translateX(-50%) scale(.6); } }
+  .stripes polygon:nth-child(-n+3) { animation: stripe-l .9s cubic-bezier(.2,.8,.2,1) backwards; }
+  .stripes polygon:nth-child(n+4) { animation-name: stripe-r; animation-duration: .9s; animation-timing-function: cubic-bezier(.2,.8,.2,1); animation-fill-mode: backwards; }
+  .stripes polygon:nth-child(2), .stripes polygon:nth-child(5) { animation-delay: .08s; }
+  .stripes polygon:nth-child(3), .stripes polygon:nth-child(6) { animation-delay: .16s; }
+  .crest { animation: crest-in .6s .5s cubic-bezier(.2,1.2,.3,1) backwards; }
+
+  /* aparición al scroll: el JS marca los elementos con .rv y les suma .rv-in al entrar en pantalla; sin JS no se oculta nada */
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes tab-in { from { opacity: 0; transform: translateX(-22px) skewX(-10deg); } }
+  .rv { opacity: 0; }
+  .rv.rv-in { opacity: 1; animation: rise .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
+  /* las pestañas rojas se encajan de costado */
+  .rv-in .tab { animation: tab-in .45s cubic-bezier(.2,.9,.3,1.2) backwards; animation-delay: calc(var(--d, 0s) + .15s); }
+
+  /* botones: se rellenan de izquierda a derecha */
+  .btn { --fill: var(--navy-deep); background: var(--red) linear-gradient(var(--fill), var(--fill)) no-repeat left center / 0 100%; transition: background-size .3s ease, color .3s ease, border-color .3s ease; }
+  .btn:hover, .btn:active { background: var(--red) linear-gradient(var(--fill), var(--fill)) no-repeat left center / 100% 100%; }
+  .btn.ghost { --fill: var(--red); background: transparent linear-gradient(var(--fill), var(--fill)) no-repeat left center / 0 100%; }
+  .btn.ghost:hover, .btn.ghost:active { background: transparent linear-gradient(var(--fill), var(--fill)) no-repeat left center / 100% 100%; color: #fff; border-color: var(--red); }
+  .btn.white:hover, .btn.white:active { background: #fff; }
+
+  /* tarjetas de noticias: suben un poco y la foto hace zoom (con mouse al pasar, en el celular al tocar) */
+  .card { transition: transform .25s ease, box-shadow .25s ease; }
+  .art.ph img { transition: transform .5s ease; }
+  .card:active .art.ph img { transform: scale(1.04); }
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -14px var(--navy-deep); }
+    .card:hover .art.ph img { transform: scale(1.04); }
+  }
 }
 
 /* táctil (Android e iOS): zonas de toque de 44 px y campos de 16 px para que iOS no haga zoom */

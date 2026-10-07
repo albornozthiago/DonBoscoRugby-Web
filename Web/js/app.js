@@ -154,34 +154,37 @@
 
   /* portal de noticias */
   var N = [
-    {c:"Infraestructura", d:"2026-09-27", t:"Master Plan Don Bosco Rugby: ordenar el club para crecer", x:"El Ateneo presentó su Master Plan 2026, una herramienta de planificación para ordenar el crecimiento de la infraestructura deportiva, social e institucional.", u:"https://donboscorugby.org/master-plan-don-bosco-rugby-infraestructura/"},
-    {c:"Hockey", d:"2026-09-23", t:"Hockey: encuentro de escuelita y mayores", x:"El 23 de septiembre a las 18:15 hs, Don Bosco, Hockey Muni y el Polideportivo Solano se encontraron en el Estadio Nacional de Hockey Quilmes.", u:"#hockey"},
-    {c:"Eventos", d:"2026-09-05", t:"Un Encuentro de Otra Galaxia", x:"El predio de Bernal se llenó de personajes de Star Wars, con fotos, sables de luz y una colecta solidaria para el Jardín de Infantes del Hogar Escuela Don Bosco.", u:"https://donboscorugby.org/encuentro-de-otra-galaxia-2026/"},
-    {c:"Infraestructura", d:"2026-04-24", t:"Inauguramos el nuevo ingreso al predio de Bernal", x:"Una mejora de infraestructura largamente anhelada que refleja el crecimiento del club y el compromiso de toda la comunidad.", u:"https://donboscorugby.org/inauguracion-nuevo-ingreso-predio-bernal/"},
-    {c:"Comunidad", d:"2026-01-02", t:"Arranca el Verano en Don Bosco 2026", x:"Desde el 12 de enero, lunes y miércoles de 18:30 a 20:00, para chicos y chicas de 4 a 13 años. Juegos, deportes, campamentos y un amigo invitado gratis.", u:"https://twitter.com/rugbydonbosco/status/2007173689662652666"},
-    {c:"Rugby", d:"2025-05-25", t:"¡Histórico debut del rugby femenino!", x:"El Rugby Femenino Mayor escribió su primera página en URBA, con triunfo en la primera jornada del circuito 2025 de Seven.", u:"https://donboscorugby.org/debut-femenino-urba"},
-    {c:"Club", d:"2024-12-14", t:"2024: balance de un año brillante", x:"El repaso del año en el club.", u:"https://donboscorugby.org/2024-balance-de-un-ano-brillante/"},
-    {c:"Rugby", d:"2023-05-20", t:"Fecha URBA de rugby infantil en Don Bosco", x:"El club recibió a las divisiones infantiles de Varela Jr, Los Matreros, Centro Naval, Lanús RC, CAR y CUQ.", u:"https://donboscorugby.org/fecha-urba-2023-rugby-infantil/"},
-    {c:"Comunidad", d:"2023-04-01", t:"Don Bosco y Ciudad impulsan la campaña del Respeto", x:"Una campaña conjunta para cuidar el respeto dentro y fuera de la cancha.", u:"https://donboscorugby.org/don-bosco-y-ciudad-impulsan-respeto/"}
+    {c:"Infraestructura", d:"2026-09-27", t:"Master Plan Don Bosco Rugby: ordenar el club para crecer", x:"El Ateneo presentó su Master Plan 2026, una herramienta de planificación para ordenar el crecimiento de la infraestructura deportiva, social e institucional.", u:"noticias/master-plan-don-bosco-rugby.html", i:"assets/noticias/infraestructura/masterplan/masterplandbr.avif"},
+    {c:"Hockey", d:"2026-09-23", t:"Hockey: encuentro de escuelita y mayores", x:"El 23 de septiembre a las 18:15 hs, Don Bosco, Hockey Muni y el Polideportivo Solano se encontraron en el Estadio Nacional de Hockey Quilmes.", u:"https://www.instagram.com/p/DdrfmXuHwmM/", i:"assets/noticias/hockey/encuentro-quilmes/hockey-encuentro-web.jpeg"},
+    {c:"Eventos", d:"2026-09-05", t:"Un Encuentro de Otra Galaxia", x:"El predio de Bernal se llenó de personajes de Star Wars, con fotos, sables de luz y una colecta solidaria para el Jardín de Infantes del Hogar Escuela Don Bosco.", u:"noticias/encuentro-de-otra-galaxia.html", i:"assets/noticias/eventos/encuentro_otrs_galaxia/encuentrotragalaxia-web.jpg"},
+    {c:"Infraestructura", d:"2026-04-24", t:"Inauguramos el nuevo ingreso al predio de Bernal", x:"Una mejora de infraestructura largamente anhelada que refleja el crecimiento del club y el compromiso de toda la comunidad.", u:"noticias/nuevo-ingreso-predio-bernal.html", i:"assets/noticias/infraestructura/inauguracion-entrada/nuevo-ingreso-predio-bernal-don-bosco.jpg.avif"},
+    {c:"Comunidad", d:"2026-01-02", t:"Arranca el Verano en Don Bosco 2026", x:"Desde el 12 de enero, lunes y miércoles de 18:30 a 20:00, para chicos y chicas de 4 a 13 años. Juegos, deportes, campamentos y un amigo invitado gratis.", u:"https://twitter.com/rugbydonbosco/status/2007173689662652666", i:"assets/noticias/comunidad/verano/veranodbr-web.jpg"},
+    {c:"Rugby", d:"2025-05-25", t:"¡Histórico debut del rugby femenino!", x:"El Rugby Femenino Mayor escribió su primera página en URBA, con triunfo en la primera jornada del circuito 2025 de Seven.", u:"noticias/debut-rugby-femenino-urba.html", i:"assets/noticias/rugby/debut-femen/DBR-Femenino-20250525b.png"},
+    {c:"Club", d:"2024-12-14", t:"2024: balance de un año brillante", x:"El repaso del año en el club.", u:"noticias/2024-balance-de-un-ano-brillante.html", i:"assets/noticias/club/balance/balance-web.jpg"},
+    {c:"Rugby", d:"2023-05-20", t:"Fecha URBA de rugby infantil en Don Bosco", x:"El club recibió a las divisiones infantiles de Varela Jr, Los Matreros, Centro Naval, Lanús RC, CAR y CUQ.", u:"noticias/fecha-urba-2023-rugby-infantil.html", i:"assets/noticias/rugby/fecha-urba-infantil/infantil.jpg"},
+    {c:"Comunidad", d:"2023-04-01", t:"Don Bosco y Ciudad impulsan la campaña del Respeto", x:"Una campaña conjunta para cuidar el respeto dentro y fuera de la cancha.", u:"noticias/campana-del-respeto-don-bosco-ciudad.html", i:"assets/noticias/comunidad/respeto/respeto.jpeg"}
   ];
   var CATS = ["Todas", "Rugby", "Hockey", "Eventos", "Infraestructura", "Comunidad", "Club"];
   var ncat = "Todas", nq = "", nshow = 6;
   var segN = document.getElementById("seg-news");
   segN.innerHTML = CATS.map(function (c, i) { return '<button type="button" data-c="' + c + '" aria-pressed="' + (i === 0) + '">' + c + '</button>'; }).join("");
   function fdate(iso) { var d = pd(iso); return d.getDate() + " " + MESL[d.getMonth()] + " " + d.getFullYear(); }
+  function art(n) {
+    return n.i ? '<div class="art ph"><img src="' + n.i + '" alt="' + esc(n.t) + '" loading="lazy"></div>' : '<div class="art" aria-hidden="true"><span>' + n.c + '</span></div>';
+  }
   function renderNews() {
     var q = norm(nq);
     var list = N.filter(function (n) {
       return (ncat === "Todas" || n.c === ncat) && (!q || norm(n.t + " " + n.x + " " + n.c).indexOf(q) >= 0);
     });
     var out = list.slice(0, nshow).map(function (n, i) {
-      var ext = n.u.charAt(0) !== "#";
-      var link = '<a class="more" href="' + n.u + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + '>' + (ext ? "Leer nota" : "Ver sección") + '</a>';
+      var sec = n.u.charAt(0) === "#", ext = /^https?:/.test(n.u);
+      var link = '<a class="more" href="' + n.u + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + '>' + (sec ? "Ver sección" : "Leer nota") + '</a>';
       var meta = '<div class="meta"><span class="cat-t">' + n.c + '</span><time datetime="' + n.d + '">' + fdate(n.d) + '</time></div>';
       if (i === 0 && !q) {
-        return '<article class="card f"><div class="art" aria-hidden="true"><span>' + n.c + '</span></div><div style="display:grid;gap:12px;align-content:center">' + meta + '<h3>' + esc(n.t) + '</h3><p>' + esc(n.x) + '</p>' + link + '</div></article>';
+        return '<article class="card f">' + art(n) + '<div style="display:grid;gap:12px;align-content:center">' + meta + '<h3>' + esc(n.t) + '</h3><p>' + esc(n.x) + '</p>' + link + '</div></article>';
       }
-      return '<article class="card">' + meta + '<h3>' + esc(n.t) + '</h3><p>' + esc(n.x) + '</p>' + link + '</article>';
+      return '<article class="card">' + art(n) + meta + '<h3>' + esc(n.t) + '</h3><p>' + esc(n.x) + '</p>' + link + '</article>';
     }).join("");
     document.getElementById("news").innerHTML = out || '<p class="empty" style="grid-column:1/-1">No encontramos notas con esa búsqueda.</p>';
     document.getElementById("nmore").hidden = list.length <= nshow;
@@ -251,19 +254,47 @@
   });
   if (location.hash) go(location.hash.slice(1), false);
 })();
-/* flechas del menú de arriba (solo se ven en celulares): mueven los ítems y se apagan en los extremos */
+/* flechas del menú de arriba (solo se ven en celulares): siempre visibles las dos; en los extremos dan la vuelta */
 (function () {
   var nav = document.querySelector("nav.menu"); if (!nav) return;
-  var ul = nav.querySelector("ul"), prev = nav.querySelector(".nv.prev"), next = nav.querySelector(".nv.next");
+  var ul = nav.querySelector("ul"), prev = nav.querySelector(".nv.nv-prev"), next = nav.querySelector(".nv.nv-next");
   if (!ul || !prev || !next) return;
-  function upd() {
-    prev.classList.toggle("off", ul.scrollLeft <= 2);
-    next.classList.toggle("off", ul.scrollLeft + ul.clientWidth >= ul.scrollWidth - 2);
+  function move(dir) {
+    var max = ul.scrollWidth - ul.clientWidth;
+    if (dir > 0 && ul.scrollLeft >= max - 2) { ul.scrollTo({ left: 0, behavior: "smooth" }); return; }
+    if (dir < 0 && ul.scrollLeft <= 2) { ul.scrollTo({ left: max, behavior: "smooth" }); return; }
+    ul.scrollBy({ left: dir * ul.clientWidth * 0.7, behavior: "smooth" });
   }
-  function move(dir) { ul.scrollBy({ left: dir * ul.clientWidth * 0.7, behavior: "smooth" }); }
   prev.addEventListener("click", function () { move(-1); });
   next.addEventListener("click", function () { move(1); });
-  ul.addEventListener("scroll", upd, { passive: true });
-  window.addEventListener("resize", upd);
-  upd();
+})();
+
+/* aparición al scroll: marca los elementos con .rv y les suma .rv-in cuando entran en pantalla (el CSS solo anima si no se pidió menos movimiento) */
+(function () {
+  if (!("IntersectionObserver" in window) || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var SEL = ".head, .panel-title, .card, .fx, .xv li, .sport, .join, .next";
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("rv-in");
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+  function scan() {
+    Array.prototype.forEach.call(document.querySelectorAll(SEL), function (el) {
+      if (el.classList.contains("rv")) return;
+      var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty("--d", (i % 6) * 0.06 + "s");
+      el.classList.add("rv");
+      io.observe(el);
+    });
+  }
+  scan();
+  /* listas que se vuelven a dibujar (filtros del fixture, noticias): marcar lo nuevo */
+  if ("MutationObserver" in window) {
+    var mo = new MutationObserver(scan);
+    ["fixture-list", "news"].forEach(function (id) {
+      var n = document.getElementById(id); if (n) mo.observe(n, { childList: true });
+    });
+  }
 })();
