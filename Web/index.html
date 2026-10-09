@@ -9,11 +9,56 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Don Bosco Rugby">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Don Bosco Rugby</title>
+<title>Don Bosco Rugby - Sitio Web Oficial</title>
 <meta name="description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
+<link rel="canonical" href="https://albornozthiago.github.io/DonBoscoRugby-Web/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Don Bosco Rugby">
+<meta property="og:title" content="Don Bosco Rugby - Sitio Web Oficial">
+<meta property="og:description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
+<meta property="og:url" content="https://albornozthiago.github.io/DonBoscoRugby-Web/">
+<meta property="og:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Escudo del Ateneo Don Bosco y el texto Sitio web oficial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Don Bosco Rugby - Sitio Web Oficial">
+<meta name="twitter:description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
+<meta name="twitter:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsOrganization",
+  "name": "Ateneo Cultural y Deportivo Don Bosco",
+  "alternateName": "Don Bosco Rugby",
+  "sport": "Rugby",
+  "foundingDate": "1967-03-21",
+  "url": "https://albornozthiago.github.io/DonBoscoRugby-Web/",
+  "logo": "https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/escudo-ateneo.png",
+  "image": "https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/escudo-ateneo.png",
+  "description": "Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.",
+  "telephone": "+54 9 11 3852 4643",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Colectora Este de la Au. Dr. Ricardo Balbín",
+    "addressLocality": "Bernal",
+    "addressRegion": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/rugbydonbosco",
+    "https://www.facebook.com/rugby.don.bosco",
+    "https://x.com/RugbyDonBosco",
+    "https://www.youtube.com/@DonBoscoRugbyOficial"
+  ]
+}
+</script>
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
 <script src="js/boot.js"></script>
+<script src="js/analytics.js" async></script>
 <link rel="preload" as="image" href="assets/dbr/bandera-web.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -331,7 +376,7 @@
         <p>Hizo propios los valores del rugby y los puso al servicio de un lugar de encuentro donde, además del cuerpo, se cultivan el espíritu y la cultura de los jóvenes. Su código de conducta es el Decálogo del Ateneísta, que es un artículo del Estatuto.</p>
       </div>
     </div>
-    <div class="seg tabs" role="tablist" aria-label="El club"><button type="button" role="tab" data-p="historia" aria-pressed="false">Historia</button><button type="button" role="tab" data-p="predio" aria-pressed="false">El predio</button><button type="button" role="tab" data-p="ceibo" aria-pressed="false">El Ceibo</button><button type="button" role="tab" data-p="consejo" aria-pressed="false">Consejo Directivo</button><button type="button" role="tab" data-p="presidentes" aria-pressed="false">Presidentes</button><button type="button" role="tab" data-p="capitanes" aria-pressed="false">Capitanes</button><button type="button" role="tab" data-p="decalogo" aria-pressed="false">Decálogo</button><button type="button" role="tab" data-p="contacto" aria-pressed="false">Contacto</button></div>
+    <div class="seg tabs" role="tablist" aria-label="El club"><button type="button" role="tab" data-p="historia" aria-pressed="false">Historia</button><button type="button" role="tab" data-p="predio" aria-pressed="false">El predio</button><button type="button" role="tab" data-p="ceibo" aria-pressed="false">El Ceibo</button><button type="button" role="tab" data-p="consejo" aria-pressed="false">Consejo Directivo</button><button type="button" role="tab" data-p="presidentes" aria-pressed="false">Presidentes</button><button type="button" role="tab" data-p="capitanes" aria-pressed="false">Capitanes</button><button type="button" role="tab" data-p="decalogo" aria-pressed="false">Decálogo</button><button type="button" role="tab" data-p="medicos" aria-pressed="false">Servicios médicos</button><button type="button" role="tab" data-p="contacto" aria-pressed="false">Contacto</button></div>
     <div class="panels">
       <div class="panel" id="historia" role="tabpanel">
     <div class="sport">
@@ -496,6 +541,20 @@
       <div class="vis ph logo"><img src="assets/dbr/escudo-ateneo.png" alt="Escudo del Ateneo Cultural y Deportivo Don Bosco" width="600" height="657" loading="lazy"></div>
     </div>
       </div>
+      <div class="panel" id="medicos" role="tabpanel">
+    <div class="sport">
+      <div>
+        <p class="kicker">Para socios y jugadores</p>
+        <h2 class="mega">Servicios médicos</h2>
+        <p class="lead">Días y horarios de atención en el club.</p>
+        <ul class="rows one">
+          <li><b>Consultorio médico</b>Martes y jueves de 19:30 a 21:30. Sábados de 10:00 a 12:00.</li>
+          <li><b>Nutrición</b>Lunes, miércoles y viernes de 16:00 a 19:00, con turno previo al <a href="tel:+5491136844985">11 3684-4985</a>.</li>
+          <li><b>Psicología deportiva</b>Lic. Marcelo Candal: <a href="tel:+5491149156507">11 4915-6507</a>.</li>
+        </ul>
+      </div>
+    </div>
+      </div>
       <div class="panel" id="contacto" role="tabpanel">
     <div class="sport">
       <div>
@@ -508,7 +567,7 @@
         </ul>
         <div class="btns"><a class="btn" href="https://wa.me/5491138524643" target="_blank" rel="noopener">WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/rugbydonbosco" target="_blank" rel="noopener">Instagram</a><a class="btn ghost" href="https://www.facebook.com/rugby.don.bosco" target="_blank" rel="noopener">Facebook</a><a class="btn ghost" href="https://x.com/RugbyDonBosco" target="_blank" rel="noopener">X</a><a class="btn ghost" href="https://www.youtube.com/@DonBoscoRugbyOficial" target="_blank" rel="noopener">YouTube</a></div>
       </div>
-      <div class="vis" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
+      <div class="vis map"><iframe src="https://www.google.com/maps?q=Colectora+Este+de+la+Au.+Dr.+Ricardo+Balb%C3%ADn,+Bernal&amp;output=embed" title="Mapa del predio del Ateneo Don Bosco en Bernal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
     </div>
       </div>
     </div>
@@ -539,6 +598,7 @@
     <a href="#contacto">Contacto</a>
   </div>
   <p>© 1967 Ateneo Cultural y Deportivo Don Bosco · Bernal</p>
+  <p class="credit">Página web desarrollada por <a href="https://www.linkedin.com/in/thiago-albornoz/" target="_blank" rel="noopener">Albornoz Thiago Agustín</a></p>
 </footer>
 <script src="js/app.js"></script>
 </body>

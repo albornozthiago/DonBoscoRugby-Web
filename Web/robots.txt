@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://albornozthiago.github.io/DonBoscoRugby-Web/sitemap.xml
