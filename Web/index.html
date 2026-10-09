@@ -13,9 +13,11 @@
 <meta name="description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
+<script src="js/boot.js"></script>
+<link rel="preload" as="image" href="assets/dbr/bandera-web.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=block">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -61,20 +63,24 @@
   <section id="sponsors">
     <div class="head"><p class="spaced">Nos acompañan</p></div>
     <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Sponsors del club">
-      <div class="car-view" id="car-view" tabindex="0">
-        <ul class="car-track" id="car-track">
-          <li class="car-item"><img src="assets/sponsors/libus.png" alt="Libus" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/ultrans.png" alt="Ultrans Cargo" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/aiter.png" alt="Aiter" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/imperial.png" alt="Imperial" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/unlimited.png" alt="Unlimited Tienda Deportiva" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/canterbury.png" alt="Canterbury" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/veteranos.png" alt="Centro de Veteranos de Guerra Quilmes" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/metalsolver.png" alt="Metal Solver SRL" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/jetour.png" alt="Jetour Mega Motors" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/tiendamay.png" alt="Tienda May" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/burgertaster.png" alt="Burger Taster" height="52"></li>
-          <li class="car-item"><img src="assets/sponsors/fuar.png" alt="FUAR Fundación UAR" height="52"></li>
+      <div class="car-view" data-dir="1" tabindex="0">
+        <ul class="car-track">
+          <li class="car-item"><img src="assets/sponsors/libus.png" alt="Libus" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/ultrans.png" alt="Ultrans Cargo" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/aiter.png" alt="Aiter" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/imperial.png" alt="Imperial" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/unlimited.png" alt="Unlimited Tienda Deportiva" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/canterbury.png" alt="Canterbury" height="56" decoding="async"></li>
+        </ul>
+      </div>
+      <div class="car-view" data-dir="-1" tabindex="0">
+        <ul class="car-track">
+          <li class="car-item"><img src="assets/sponsors/veteranos.png" alt="Centro de Veteranos de Guerra Quilmes" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/metalsolver.png" alt="Metal Solver SRL" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/jetour.png" alt="Jetour Mega Motors" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/tiendamay.png" alt="Tienda May" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/burgertaster.png" alt="Burger Taster" height="56" decoding="async"></li>
+          <li class="car-item"><img src="assets/sponsors/fuar.png" alt="FUAR Fundación UAR" height="56" decoding="async"></li>
         </ul>
       </div>
     </div>

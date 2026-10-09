@@ -1,0 +1,38 @@
+name: Actualizar resultados
+
+# Baja el fixture de la URBA y, si cambió algún resultado, commitea en main y vuelve a publicar.
+on:
+  schedule:
+    # sábados y domingos (UTC): cada 30 min entre las 16 y las 03 hs de Argentina
+    - cron: "*/30 19-23,0-6 * * 6,0"
+    # resto de la semana: una vez por día
+    - cron: "0 13 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: resultados
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: run
+        run: echo "res=$(python3 scripts/actualizar_resultados.py)" >> "$GITHUB_OUTPUT"
+      - if: steps.run.outputs.res == 'cambios'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: resultados actualizados desde la URBA"
+          git push
+          # los commits hechos con el token no disparan otros workflows: se publica a mano
+          gh workflow run pages.yml --ref main

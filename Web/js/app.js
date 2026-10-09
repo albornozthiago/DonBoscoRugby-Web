@@ -199,33 +199,66 @@
   renderNews();
 })();
 
-/* carrusel de sponsors */
+/* carrusel de sponsors: cada fila (data-dir 1 o -1) se duplica para el bucle infinito y se mueve sola; al tocarla en el celular se frena */
 (function () {
-  var view = document.getElementById("car-view"), track = document.getElementById("car-track");
-  if (!view || !track) return;
-  Array.prototype.slice.call(track.children).forEach(function (li) {
-    var c = li.cloneNode(true);
-    c.setAttribute("aria-hidden", "true");
-    c.querySelector("img").alt = "";
-    track.appendChild(c);
-  });
+  var views = Array.prototype.slice.call(document.querySelectorAll(".car-view"));
+  if (!views.length) return;
   var paused = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var hold = false, last = 0, carry = 0, holdTimer = null;
-  function half() { return track.scrollWidth / 2; }
+  var rows = views.map(function (view) {
+    var track = view.querySelector(".car-track");
+    Array.prototype.slice.call(track.children).forEach(function (li) {
+      var c = li.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      c.querySelector("img").alt = "";
+      track.appendChild(c);
+    });
+    var r = { view: view, track: track, dir: view.getAttribute("data-dir") === "-1" ? -1 : 1, hold: false, carry: 0, timer: null, ready: false };
+    view.addEventListener("touchstart", function () { r.hold = true; clearTimeout(r.timer); }, { passive: true });
+    view.addEventListener("touchend", function () { clearTimeout(r.timer); r.timer = setTimeout(function () { r.hold = false; }, 2500); }, { passive: true });
+    return r;
+  });
+  var last = 0;
   function tick(t) {
     var dt = last ? Math.min(t - last, 64) : 0; last = t;
-    if (!paused && !hold) {
-      carry += 0.045 * dt;
-      var s = Math.floor(carry);
-      if (s >= 1) { view.scrollLeft += s; carry -= s; }
-    }
-    var h = half();
-    if (h > 0 && view.scrollLeft >= h) view.scrollLeft -= h;
+    rows.forEach(function (r) {
+      var h = r.track.scrollWidth / 2;
+      if (h <= 0) return;
+      if (!r.ready) { if (r.dir < 0) r.view.scrollLeft = h; r.ready = true; }
+      if (!paused && !r.hold) {
+        r.carry += 0.04 * dt;
+        var s = Math.floor(r.carry);
+        if (s >= 1) { r.view.scrollLeft += s * r.dir; r.carry -= s; }
+      }
+      if (r.view.scrollLeft >= h) r.view.scrollLeft -= h;
+      else if (r.view.scrollLeft <= 0 && r.dir < 0) r.view.scrollLeft += h;
+    });
     requestAnimationFrame(tick);
   }
-  view.addEventListener("touchstart", function () { hold = true; clearTimeout(holdTimer); }, { passive: true });
-  view.addEventListener("touchend", function () { clearTimeout(holdTimer); holdTimer = setTimeout(function () { hold = false; }, 2500); }, { passive: true });
   requestAnimationFrame(tick);
+})();
+
+/* fotos: marca .ld cuando cada una terminó de cargar (el CSS la muestra con fundido) y, ya cargada la página, baja las de los paneles ocultos para que no aparezcan de golpe al abrir la pestaña */
+(function () {
+  var imgs = Array.prototype.slice.call(document.querySelectorAll(".vis img, .shot img"));
+  function mark(img) { img.classList.add("ld"); }
+  function watch(img) {
+    if (img.complete) { (img.decode ? img.decode().then(function () { mark(img); }, function () { mark(img); }) : mark(img)); return; }
+    img.addEventListener("load", function () { mark(img); }, { once: true });
+    img.addEventListener("error", function () { mark(img); }, { once: true });
+  }
+  imgs.forEach(watch);
+  /* las fotos de las noticias se dibujan por JS: marcarlas cuando aparecen */
+  var news = document.getElementById("news");
+  if (news && "MutationObserver" in window) {
+    new MutationObserver(function () {
+      Array.prototype.forEach.call(news.querySelectorAll(".art img:not(.ld)"), watch);
+    }).observe(news, { childList: true });
+  }
+  Array.prototype.forEach.call(news ? news.querySelectorAll(".art img") : [], watch);
+  function warm() {
+    Array.prototype.forEach.call(document.querySelectorAll('img[loading="lazy"]'), function (img) { if (img.closest(".panel")) img.loading = "eager"; });
+  }
+  window.addEventListener("load", function () { (window.requestIdleCallback || function (f) { setTimeout(f, 400); })(warm); });
 })();
 
 /* pestañas */
@@ -271,7 +304,8 @@
 
 /* aparición al scroll: marca los elementos con .rv y les suma .rv-in cuando entran en pantalla (el CSS solo anima si no se pidió menos movimiento) */
 (function () {
-  if (!("IntersectionObserver" in window) || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("js-ok");
+  if (!("IntersectionObserver" in window) || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("js-late"); return; }
   var SEL = ".head, .panel-title, .card, .fx, .xv li, .sport, .join, .next";
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {

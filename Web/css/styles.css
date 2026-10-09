@@ -18,6 +18,8 @@ img { max-width: 100%; }
   --win: #1d7a45;
   --on-win: #ffffff;
   --accent-text: #101a58;
+  --logo-bg: #ffffff;
+  --logo-line: #e3e4ee;
   --font-display: "Bebas Neue", "Oswald", "Arial Narrow", Impact, sans-serif;
   --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
@@ -25,14 +27,14 @@ img { max-width: 100%; }
   :root:not([data-theme="light"]) {
     --ground: #070b27; --paper: #0e1544; --ink: #f0f1fb; --muted: #a9aed6; --line: #232d70;
     --navy: #2a33a6; --navy-deep: #060a2c; --red: #ea4545; --grey: #3b4380; --flag-white: #ffffff;
-    --win: #5fd08a; --on-win: #04210f; --accent-text: #ffffff;
+    --win: #5fd08a; --on-win: #04210f; --accent-text: #ffffff; --logo-bg: #ffffff; --logo-line: #e3e4ee;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --ground: #070b27; --paper: #0e1544; --ink: #f0f1fb; --muted: #a9aed6; --line: #232d70;
   --navy: #2a33a6; --navy-deep: #060a2c; --red: #ea4545; --grey: #3b4380; --flag-white: #ffffff;
-  --win: #5fd08a; --on-win: #04210f; --accent-text: #ffffff;
+  --win: #5fd08a; --on-win: #04210f; --accent-text: #ffffff; --logo-bg: #ffffff; --logo-line: #e3e4ee;
   color-scheme: dark;
 }
 
@@ -377,19 +379,20 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
-/* carrusel de sponsors */
-.carousel { display: block; }
-.car-view { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; background: #f7f7fa; border: 1px solid var(--line); }
+/* carrusel de sponsors: dos filas en sentidos opuestos, fichas parejas sobre fondo blanco (los logos son PNG sin fondo) y bordes que se desvanecen */
+.carousel { display: grid; gap: 10px; padding: 14px 0; background: var(--logo-bg); border: 1px solid var(--logo-line); border-top: 4px solid var(--red); border-bottom: 4px solid var(--navy); }
+.car-view { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
 .car-view::-webkit-scrollbar { display: none; }
-.car-track { display: flex; list-style: none; margin: 0; padding: 0; width: max-content; }
-.car-item { flex: none; display: grid; place-items: center; height: 96px; padding: 0 28px; border-right: 1px solid #e3e4ee; }
-.car-item img { display: block; height: 52px; width: auto; max-width: 210px; object-fit: contain; }
+.car-track { display: flex; gap: 10px; list-style: none; margin: 0; padding: 0 5px; width: max-content; }
+.car-item { flex: none; display: grid; place-items: center; width: 190px; height: 84px; padding: 0 18px; border: 1px solid var(--logo-line); }
+.car-item img { display: block; width: auto; height: auto; max-height: 56px; max-width: 148px; object-fit: contain; }
 .car-foot { margin-top: 12px; display: flex; justify-content: flex-end; }
 #sponsors { margin-top: 40px; }
 .src-link { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
 @media (max-width: 560px) {
-    .car-item { height: 84px; padding: 0 20px; }
-  .car-item img { height: 44px; max-width: 160px; }
+  .car-item { width: 150px; height: 68px; padding: 0 14px; }
+  .car-item img { max-height: 44px; max-width: 118px; }
 }
 
 /* animaciones: todo dentro de no-preference, así quien pidió menos movimiento ve el sitio quieto. Solo se animan transform y opacity */
@@ -407,7 +410,7 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   /* aparición al scroll: el JS marca los elementos con .rv y les suma .rv-in al entrar en pantalla; sin JS no se oculta nada */
   @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
   @keyframes tab-in { from { opacity: 0; transform: translateX(-22px) skewX(-10deg); } }
-  .rv { opacity: 0; }
+  .js:not(.js-late) :is(.head, .panel-title, .card, .fx, .xv li, .sport, .join, .next):not(.rv-in) { opacity: 0; }
   .rv.rv-in { opacity: 1; animation: rise .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
   /* las pestañas rojas se encajan de costado */
   .rv-in .tab { animation: tab-in .45s cubic-bezier(.2,.9,.3,1.2) backwards; animation-delay: calc(var(--d, 0s) + .15s); }
@@ -440,3 +443,14 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .search input { font-size: 16px; min-height: 44px; }
 }
 @media (max-width: 560px) { .search input { font-size: 16px; } }
+
+/* fotos: fondo con brillo mientras cargan y fundido al terminar (el JS suma .ld; sin JS se ven normales) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  @keyframes fade-in { from { opacity: 0; } }
+  .js .vis.ph, .js .shot, .js .art.ph { background: linear-gradient(100deg, var(--navy-deep) 30%, var(--navy) 50%, var(--navy-deep) 70%) 100% 0 / 200% 100%; animation: shimmer 1.4s linear infinite; }
+  .js .vis.ph.logo { background: none; animation: none; }
+  .js .vis.ph img:not(.ld), .js .shot img:not(.ld), .js .art.ph img:not(.ld) { opacity: 0; }
+  .js .vis.ph img, .js .shot img, .js .art.ph img { transition: opacity .7s ease, transform .5s ease; }
+  .banner { animation: fade-in .9s ease backwards; }
+}
