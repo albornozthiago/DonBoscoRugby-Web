@@ -4,7 +4,8 @@ name: Actualizar resultados
 on:
   schedule:
     # sábados y domingos (UTC): cada 30 min entre las 16 y las 03 hs de Argentina
-    - cron: "*/30 19-23,0-6 * * 6,0"
+    # (en :11 y :41 y no en :00/:30, que es cuando GitHub más demora o saltea corridas)
+    - cron: "11,41 19-23,0-6 * * 6,0"
     # resto de la semana: una vez por día
     - cron: "0 13 * * 1-5"
   workflow_dispatch:
