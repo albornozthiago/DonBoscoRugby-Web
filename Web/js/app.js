@@ -37,7 +37,7 @@
     [21,"2026-09-12","C.U. de Quilmes","V",7,26],
     [22,"2026-09-26","Liceo Naval","L",26,28],
     [23,"2026-10-03","Italiano","V",28,10],
-    [24,"2026-10-10","San Patricio","L",null,null,"15:30"],
+    [24,"2026-10-10","San Patricio","L",44,11],
     [25,"2026-10-17","Liceo Militar","V",null,null,"15:30"],
     [26,"2026-10-24","Vicentinos","L",null,null,"15:30"]
   ];
