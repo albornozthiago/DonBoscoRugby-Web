@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1750" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060a2c" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Don Bosco Rugby">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Fixture y formación · Don Bosco Rugby</title>
+<meta name="description" content="Fixture, resultados y formación de la Primera de Don Bosco en Primera B URBA 2026.">
+<link rel="canonical" href="https://albornozthiago.github.io/DonBoscoRugby-Web/fixture.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Don Bosco Rugby">
+<meta property="og:title" content="Fixture y formación · Don Bosco Rugby">
+<meta property="og:description" content="Fixture, resultados y formación de la Primera de Don Bosco en Primera B URBA 2026.">
+<meta property="og:url" content="https://albornozthiago.github.io/DonBoscoRugby-Web/fixture.html">
+<meta property="og:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fixture y formación · Don Bosco Rugby">
+<meta name="twitter:description" content="Fixture, resultados y formación de la Primera de Don Bosco en Primera B URBA 2026.">
+<meta name="twitter:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+<link rel="icon" href="assets/crest.png">
+<link rel="apple-touch-icon" href="assets/crest.png">
+<script src="js/boot.js"></script>
+<script src="js/analytics.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=block">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav class="menu" aria-label="Secciones">
+  <button type="button" class="nv nv-prev" aria-label="Ver ítems anteriores del menú">&#8249;</button>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="fixture.html" aria-current="page">Fixture</a></li>
+    <li><a href="fixture.html#plantel">Formación</a></li>
+    <li><a href="club.html">El club</a></li>
+    <li><a href="index.html#noticias">Noticias</a></li>
+    <li><a href="club.html#contacto">Contacto</a></li>
+  </ul>
+  <button type="button" class="nv nv-next" aria-label="Ver más ítems del menú">&#8250;</button>
+</nav>
+
+<div class="top">
+  <svg class="stripes" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
+    <g>
+      <polygon class="s1" points="0,0 600,75 600,105 0,30"/>
+      <polygon class="s2" points="0,30 600,105 600,135 0,60"/>
+      <polygon class="s3" points="0,60 600,135 600,165 0,90"/>
+      <polygon class="s1" points="1200,0 600,75 600,105 1200,30"/>
+      <polygon class="s2" points="1200,30 600,105 600,135 1200,60"/>
+      <polygon class="s3" points="1200,60 600,135 600,165 1200,90"/>
+    </g>
+  </svg>
+  <a href="index.html"><img class="crest" src="assets/crest.png" alt="Escudo del Ateneo Don Bosco" width="112" height="112"></a>
+</div>
+
+<main class="sheet">
+  <section id="resultados">
+    <div class="head">
+      <h2 class="mega"><span class="b">Fixture</span> <span class="r">2026</span></h2>
+      <p class="spaced" id="round-label">Segunda ronda</p>
+    </div>
+    <aside class="next" aria-live="polite">
+      <p class="eyebrow">Próximo partido · Plantel superior</p>
+      <div class="row">
+        <div class="tab" id="nx-tab"><span class="d">10</span><span class="m">Oct.</span></div>
+        <div>
+          <p class="vs" id="nx-vs">vs San Patricio</p>
+          <p class="sub" id="nx-sub">Fecha 24 · Local · Predio de Bernal</p>
+        </div>
+      </div>
+      <p class="days" id="nx-days"></p>
+      <p class="last" id="nx-last"></p>
+    </aside>
+    <div class="tiles" id="tiles"></div>
+    <div class="formstrip-wrap">
+      <span class="eyebrow">Cómo viene la temporada</span>
+      <div class="formstrip" id="formstrip"></div>
+      <p class="legend">G: ganado · E: empatado · P: perdido · punteado: por jugar. Cada casillero es una fecha.</p>
+    </div>
+    <div class="controls">
+      <div class="seg" id="seg-round" role="group" aria-label="Ronda">
+        <button type="button" data-r="2" aria-pressed="true">Segunda ronda</button>
+        <button type="button" data-r="1" aria-pressed="false">Primera ronda</button>
+      </div>
+      <div class="seg red" id="seg-filter" role="group" aria-label="Filtro">
+        <button type="button" data-f="all" aria-pressed="true">Todos</button>
+        <button type="button" data-f="L" aria-pressed="false">Local</button>
+        <button type="button" data-f="V" aria-pressed="false">Visitante</button>
+        <button type="button" data-f="G" aria-pressed="false">Ganados</button><button type="button" data-f="E" aria-pressed="false" hidden>Empatados</button>
+        <button type="button" data-f="P" aria-pressed="false">Perdidos</button>
+      </div>
+    </div>
+    <ol class="fixture" id="fixture-list"></ol>
+    <div class="src">
+      <span>Primera B, plantel superior. El primer número es siempre el de Don Bosco.</span>
+      <a href="https://urba.org.ar/fixture?year=2026&amp;id=2025178" target="_blank" rel="noopener">Tabla y fixture completo en URBA</a>
+    </div>
+  </section>
+
+  <div class="bandera" aria-hidden="true"></div>
+
+  <section id="plantel">
+    <div class="panel-title">
+      <h3>Formación <span class="r">XV</span></h3>
+      <p id="xv-match">Sábado 3 de octubre · vs Italiano</p>
+      <span class="chip red" id="xv-res">Ganó 28 – 10</span>
+    </div>
+    <div class="xvgrid">
+      <div><h4>Forwards · 1 al 8</h4><ol class="xv" id="xv-f"></ol></div>
+      <div><h4>Backs · 9 al 15</h4><ol class="xv" id="xv-b"></ol></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="links">
+    <a href="club.html">Sobre nosotros</a>
+    <a href="https://simplesolutions.com.ar/donbosco/" target="_blank" rel="noopener">App DBR</a>
+    <a href="https://www.rugbymanager.com.ar" target="_blank" rel="noopener">Rugby Manager</a>
+    <a href="https://bd.uar.com.ar/registro" target="_blank" rel="noopener">BDUAR</a>
+    <a href="club.html#contacto">Contacto</a>
+  </div>
+  <p>© 1967 Ateneo Cultural y Deportivo Don Bosco · Bernal</p>
+  <p class="credit">Página web desarrollada por <a href="https://www.linkedin.com/in/thiago-albornoz/" target="_blank" rel="noopener">Albornoz Thiago Agustín</a></p>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

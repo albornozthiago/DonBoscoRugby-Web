@@ -47,10 +47,13 @@
   var nextIdx = -1;
   M.forEach(function (m, i) { if (nextIdx < 0 && !played(m) && pd(m[1]) >= today) nextIdx = i; });
 
-  /* portada */
+  function $(id) { return document.getElementById(id); }
+
+  /* próximo partido (en el inicio y en fixture.html) */
   var last = null;
   M.forEach(function (m) { if (played(m)) last = m; });
-  if (nextIdx >= 0) {
+  if (!$("nx-tab")) {
+  } else if (nextIdx >= 0) {
     var n = M[nextIdx], d = pd(n[1]);
     document.getElementById("nx-tab").innerHTML = '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>';
     document.getElementById("nx-vs").innerHTML = crest(n[2]) + "<span>vs " + esc(n[2]) + "</span>";
@@ -61,42 +64,49 @@
     document.getElementById("nx-vs").textContent = "Temporada completa";
     document.getElementById("nx-sub").textContent = "Gracias por acompañar al Bosco";
   }
-  if (last) {
+  if (last && $("nx-last")) {
     document.getElementById("nx-last").textContent = "Último resultado: " + (last[3] === "L" ? "Don Bosco " + last[4] + " – " + last[5] + " " + last[2] : last[2] + " " + last[5] + " – " + last[4] + " Don Bosco") + " (fecha " + last[0] + ")";
   }
 
   /* estadísticas y racha */
-  var pj = 0, g = 0, p = 0, pf = 0, pc = 0;
-  M.forEach(function (m) { if (played(m)) { pj++; pf += m[4]; pc += m[5]; if (m[4] > m[5]) g++; else p++; } });
+  var pj = 0, g = 0, e = 0, p = 0, pf = 0, pc = 0;
+  M.forEach(function (m) { if (played(m)) { pj++; pf += m[4]; pc += m[5]; if (m[4] > m[5]) g++; else if (m[4] === m[5]) e++; else p++; } });
   var dif = pf - pc;
+  var eb = document.querySelector('#seg-filter [data-f="E"]');
+  if (eb) eb.hidden = !e;
+  if ($("tiles")) {
   document.getElementById("tiles").innerHTML =
     '<div class="tile dk"><b>' + pj + '</b><span>Jugados</span></div>' +
     '<div class="tile"><b>' + g + '</b><span>Ganados</span></div>' +
+    (e ? '<div class="tile dk"><b>' + e + '</b><span>Empatados</span></div>' : '') +
     '<div class="tile red"><b>' + p + '</b><span>Perdidos</span></div>' +
     '<div class="tile dk"><b>' + pf + '</b><span>Tantos a favor</span></div>' +
     '<div class="tile dk"><b>' + pc + '</b><span>Tantos en contra</span></div>' +
     '<div class="tile"><b>' + (dif > 0 ? "+" : "") + dif + '</b><span>Diferencia</span></div>';
   document.getElementById("formstrip").innerHTML = M.map(function (m) {
     if (!played(m)) return '<i class="p" title="Fecha ' + m[0] + ': por jugar">' + m[0] + '</i>';
-    var w = m[4] > m[5];
-    return '<i class="' + (w ? "" : "l") + '" title="Fecha ' + m[0] + ' vs ' + esc(m[2]) + ': ' + m[4] + ' a ' + m[5] + '">' + (w ? "G" : "P") + '</i>';
+    var r = m[4] > m[5] ? "G" : m[4] === m[5] ? "E" : "P";
+    return '<i class="' + (r === "G" ? "" : r === "E" ? "e" : "l") + '" title="Fecha ' + m[0] + ' vs ' + esc(m[2]) + ': ' + m[4] + ' a ' + m[5] + '">' + r + '</i>';
   }).join("");
+  }
 
   /* fixture con filtros */
   var round = nextIdx >= 0 && nextIdx < 13 ? 1 : 2, filt = "all";
   function renderFx() {
+    if (!$("fixture-list")) return;
     var items = M.filter(function (m) {
       if ((round === 1) !== (m[0] <= 13)) return false;
       if (filt === "L" || filt === "V") return m[3] === filt;
       if (filt === "G") return played(m) && m[4] > m[5];
       if (filt === "P") return played(m) && m[4] < m[5];
+      if (filt === "E") return played(m) && m[4] === m[5];
       return true;
     });
     var html = items.map(function (m) {
       var d = pd(m[1]), local = m[3] === "L", i = m[0] - 1, sc;
       if (played(m)) {
-        var w = m[4] > m[5];
-        sc = '<div class="score' + (w ? "" : " loss") + '">' + m[4] + ' – ' + m[5] + '<small>' + (w ? "Ganó" : "Perdió") + '</small></div>';
+        var r = m[4] > m[5] ? "G" : m[4] === m[5] ? "E" : "P";
+        sc = '<div class="score' + (r === "G" ? "" : r === "E" ? " draw" : " loss") + '">' + m[4] + ' – ' + m[5] + '<small>' + (r === "G" ? "Ganó" : r === "E" ? "Empató" : "Perdió") + '</small></div>';
       } else {
         sc = '<div class="score todo">' + m[6] + ' hs</div>';
       }
@@ -115,15 +125,16 @@
       cb(b.getAttribute(attr));
     });
   }
-  bind("seg-round", "data-r", function (v) { round = +v; renderFx(); });
-  bind("seg-filter", "data-f", function (v) { filt = v; renderFx(); });
-  (function () {
+  if ($("seg-round")) bind("seg-round", "data-r", function (v) { round = +v; renderFx(); });
+  if ($("seg-filter")) bind("seg-filter", "data-f", function (v) { filt = v; renderFx(); });
+  if ($("seg-round")) (function () {
     var bs = document.querySelectorAll("#seg-round button");
     Array.prototype.forEach.call(bs, function (b) { b.setAttribute("aria-pressed", +b.getAttribute("data-r") === round ? "true" : "false"); });
   })();
   renderFx();
 
-  /* formación XV vs Italiano */
+  /* formación XV: XV_FECHA es la fecha de M a la que corresponde (fecha, rival y resultado salen de M, así que se actualizan solos) */
+  var XV_FECHA = 23;
   var IMG = {
     1: "assets/players/p1.jpg", 2: "assets/players/p2.jpg", 3: "assets/players/p3.jpg", 4: "assets/players/p4.jpg", 5: "assets/players/p5.jpg", 6: "assets/players/p6.jpg", 7: "assets/players/p7.jpg", 8: "assets/players/p8.jpg",
     9: "assets/players/p9.jpg", 10: "assets/players/p10.jpg", 11: "assets/players/p11.jpg", 12: "assets/players/p12.jpg", 13: "assets/players/p13.jpg", 14: "assets/players/p14.jpg", 15: "assets/players/p15.jpg"
@@ -149,8 +160,22 @@
     return '<li><span class="n">' + pad(x[0]) + '</span><span class="who">' + esc(x[1]) + '<b>' + esc(x[2]) + '</b><small>' + x[3] + '</small></span>' +
       '<img src="' + IMG[x[0]] + '" alt="' + esc(x[1] + " " + x[2]) + '" width="120" height="88" loading="lazy"></li>';
   }
-  document.getElementById("xv-f").innerHTML = XV.slice(0, 8).map(xvRow).join("");
-  document.getElementById("xv-b").innerHTML = XV.slice(8).map(xvRow).join("");
+  if ($("xv-f")) {
+    var xm = M.filter(function (m) { return m[0] === XV_FECHA; })[0];
+    if (xm) {
+      var xd = pd(xm[1]);
+      document.getElementById("xv-match").textContent = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"][xd.getDay()] + " " + xd.getDate() + " de " + MESL[xd.getMonth()] + " · vs " + xm[2];
+      var xr = document.getElementById("xv-res");
+      if (played(xm)) {
+        xr.textContent = (xm[4] > xm[5] ? "Ganó " : xm[4] === xm[5] ? "Empató " : "Perdió ") + xm[4] + " – " + xm[5];
+        xr.className = "chip" + (xm[4] > xm[5] ? " red" : "");
+      } else {
+        xr.textContent = xm[6] + " hs";
+      }
+    }
+    document.getElementById("xv-f").innerHTML = XV.slice(0, 8).map(xvRow).join("");
+    document.getElementById("xv-b").innerHTML = XV.slice(8).map(xvRow).join("");
+  }
 
   /* portal de noticias */
   var N = [
@@ -167,6 +192,7 @@
   var CATS = ["Todas", "Rugby", "Hockey", "Eventos", "Infraestructura", "Comunidad", "Club"];
   var ncat = "Todas", nq = "", nshow = 6;
   var segN = document.getElementById("seg-news");
+  if (segN) {
   segN.innerHTML = CATS.map(function (c, i) { return '<button type="button" data-c="' + c + '" aria-pressed="' + (i === 0) + '">' + c + '</button>'; }).join("");
   function fdate(iso) { var d = pd(iso); return d.getDate() + " " + MESL[d.getMonth()] + " " + d.getFullYear(); }
   function art(n) {
@@ -197,6 +223,7 @@
   document.getElementById("nsearch").addEventListener("input", function (e) { nq = e.target.value; nshow = 6; renderNews(); });
   document.getElementById("nmore").addEventListener("click", function () { nshow += 6; renderNews(); });
   renderNews();
+  }
 })();
 
 /* carrusel de sponsors: cada fila (data-dir 1 o -1) se duplica para el bucle infinito y se mueve sola; al tocarla en el celular se frena */
