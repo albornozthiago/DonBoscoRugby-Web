@@ -161,35 +161,37 @@
   // FORMACIÓN XV
   // ############################################################
   /* formación XV: XV_FECHA es la fecha de M a la que corresponde (fecha, rival y resultado salen de M, así que se actualizan solos) */
-  var XV_FECHA = 23;
-  var IMG = {
-    1: "assets/players/p1.jpg", 2: "assets/players/p2.jpg", 3: "assets/players/p3.jpg", 4: "assets/players/p4.jpg", 5: "assets/players/p5.jpg", 6: "assets/players/p6.jpg", 7: "assets/players/p7.jpg", 8: "assets/players/p8.jpg",
-    9: "assets/players/p9.jpg", 10: "assets/players/p10.jpg", 11: "assets/players/p11.jpg", 12: "assets/players/p12.jpg", 13: "assets/players/p13.jpg", 14: "assets/players/p14.jpg", 15: "assets/players/p15.jpg"
-  };
+  var XV_FECHA = 24;
+  /* cada fila es [nombre, apellido] o [nombre, apellido, "C"|"VC"]; el número de camiseta es el orden (1 a 15) y de ahí sale el puesto.
+     La foto es assets/players/{apellido}-{nombre}.jpg, en minúsculas, sin tildes y con guiones (ej: gonzalez-bigliardi-teo.jpg).
+     Las fotos de jugadores que ya no están en la formación se dejan en la carpeta para cuando vuelvan. */
+  var POS = ["Pilar izquierdo", "Hooker", "Pilar derecho", "Segunda línea", "Segunda línea", "Ala", "Ala", "Número 8", "Medio scrum", "Apertura", "Wing", "Primer centro", "Segundo centro", "Wing", "Fullback"];
 
   // ############################################################
   // DATOS: JUGADORES (XV)
   // ############################################################
   var XV = [
-    [1,"Joaquín","Salguero","Pilar izquierdo"],
-    [2,"Fernando","Gabba (C)","Hooker"],
-    [3,"Xavier","Villalba","Pilar derecho"],
-    [4,"Mauro","Ferradas","Segunda línea"],
-    [5,"Guido","Goyak","Segunda línea"],
-    [6,"Tomás","Gori","Ala"],
-    [7,"Mauricio","Gori","Ala"],
-    [8,"Marian","Biondo","Número 8"],
-    [9,"Lisandro","Bigliardi","Medio scrum"],
-    [10,"Franco","Villano","Apertura"],
-    [11,"Santiago","De Elorduy","Wing"],
-    [12,"Teo","Gonzalez Bigliardi","Primer centro"],
-    [13,"Gonzalo","Gadano","Segundo centro"],
-    [14,"Joaquín","Sempe","Wing"],
-    [15,"Juan","Berutti (VC)","Fullback"]
+    ["Joaquín","Salguero"],
+    ["Fernando","Gabba","C"],
+    ["Xavier","Villalba"],
+    ["Mauro","Ferradas"],
+    ["Guido","Goyak"],
+    ["Tomás","Rodriguez"],
+    ["Mauricio","Gori"],
+    ["Marian","Biondo"],
+    ["Lisandro","Bigliardi"],
+    ["Franco","Villano"],
+    ["Santiago","De Elorduy"],
+    ["Teo","Gonzalez Bigliardi"],
+    ["Gonzalo","Gadano"],
+    ["Joaquín","Sempe"],
+    ["Juan","Berutti","VC"]
   ];
-  function xvRow(x) {
-    return '<li><span class="n">' + pad(x[0]) + '</span><span class="who">' + esc(x[1]) + '<b>' + esc(x[2]) + '</b><small>' + x[3] + '</small></span>' +
-      '<img src="' + IMG[x[0]] + '" alt="' + esc(x[1] + " " + x[2]) + '" width="120" height="88" loading="lazy"></li>';
+  function pslug(s) { return norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+  function xvRow(x, i) {
+    var cap = x[2] ? " (" + x[2] + ")" : "";
+    return '<li><span class="n">' + pad(i + 1) + '</span><span class="who">' + esc(x[0]) + '<b>' + esc(x[1] + cap) + '</b><small>' + POS[i] + '</small></span>' +
+      '<img src="assets/players/' + pslug(x[1]) + "-" + pslug(x[0]) + '.jpg" alt="' + esc(x[0] + " " + x[1]) + '" width="120" height="88" loading="lazy"></li>';
   }
   if ($("xv-f")) {
     var xm = M.filter(function (m) { return m[0] === XV_FECHA; })[0];
@@ -204,8 +206,8 @@
         xr.textContent = xm[6] + " hs";
       }
     }
-    document.getElementById("xv-f").innerHTML = XV.slice(0, 8).map(xvRow).join("");
-    document.getElementById("xv-b").innerHTML = XV.slice(8).map(xvRow).join("");
+    document.getElementById("xv-f").innerHTML = XV.slice(0, 8).map(function (x, i) { return xvRow(x, i); }).join("");
+    document.getElementById("xv-b").innerHTML = XV.slice(8).map(function (x, i) { return xvRow(x, i + 8); }).join("");
   }
 
   // ############################################################

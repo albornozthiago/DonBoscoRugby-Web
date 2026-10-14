@@ -71,7 +71,7 @@ Web/
     ├── crest.png     Escudo del club
     ├── dbr/          Fotos y gráficos del club (versiones -web, livianas)
     ├── clubs/        Escudos de los rivales
-    ├── players/      Fotos de la formación (p1.jpg a p15.jpg)
+    ├── players/      Fotos de jugadores ({apellido}-{nombre}.jpg)
     ├── sponsors/     Un logo por sponsor
     ├── noticias/     Imágenes de cada nota
     └── readme/       Imágenes de este README
@@ -86,7 +86,7 @@ Casi todo se edita en `Web/js/app.js`.
 | Qué | Dónde | Formato |
 | --- | --- | --- |
 | Resultados y fixture | array `M` | `[fecha, "AAAA-MM-DD", rival, "L"\|"V", tantos DB, tantos rival, hora]`. Los partidos por jugar llevan `null, null` y la hora. Los tantos de Don Bosco van siempre primero. |
-| Formación XV | array `XV` | `[número, nombre, apellido, puesto]`. La foto es `assets/players/p{número}.jpg`. |
+| Formación XV | array `XV` | `[nombre, apellido]` en orden de camiseta (1 a 15). La foto es `assets/players/{apellido}-{nombre}.jpg`. |
 | Noticias | array `N` | `c` categoría, `d` fecha ISO, `t` título, `x` resumen, `u` link. La primera nota es la destacada. Las categorías del filtro están en `CATS`. |
 | Sponsors | `index.html` | Logo en `assets/sponsors/` y un `<li class="car-item">`. El JS duplica los ítems para el bucle infinito. |
 | Escudos de rivales | `assets/clubs/` | `{nombre}.png` en minúsculas, sin tildes, espacios ni puntos (`cudequilmes.png`). Sin archivo se muestran las iniciales. |
