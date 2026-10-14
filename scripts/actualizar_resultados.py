@@ -5,24 +5,44 @@ Uso: python3 scripts/actualizar_resultados.py
 Sale con 0 haya o no cambios; imprime "cambios" o "sin cambios".
 Si la API falla o devuelve algo raro, no toca nada y sale con error.
 """
+
+# ############################################################
+# IMPORTACIONES
+# ############################################################
 import json, re, sys, unicodedata, urllib.request
 from pathlib import Path
 
+# ############################################################
+# CONFIGURACIÓN
+# ############################################################
 CHAMP = 2025178
 URL = f"https://urba.org.ar/api/fixture/championship/{CHAMP}"
 CLUB = "Don Bosco"
 APP = Path(__file__).resolve().parent.parent / "Web" / "js" / "app.js"
 
+# ############################################################
+# UTILIDADES
+# ############################################################
 def norm(s):
     s = unicodedata.normalize("NFD", s)
     return "".join(c for c in s if not unicodedata.combining(c)).lower().strip()
 
+# ############################################################
+# DESCARGA DEL FIXTURE DE LA URBA
+# ############################################################
 def fetch():
     req = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0 (DonBoscoRugby-Web)"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)["championship"]
 
+# ############################################################
+# ACTUALIZACIÓN DEL ARRAY M EN app.js
+# ############################################################
 def main():
+
+    # ############################################################
+    # LECTURA DE app.js
+    # ############################################################
     src = APP.read_text(encoding="utf-8")
     m = re.search(r"(  var M = \[\n)(.*?)(\n  \];)", src, re.S)
     if not m:
@@ -33,6 +53,9 @@ def main():
         old[int(row[0])] = row
     names = {norm(r[2]): r[2] for r in old.values()}
 
+    # ############################################################
+    # ARMADO DE LAS FILAS
+    # ############################################################
     champ = fetch()
     rounds = champ["rounds"]
     if len(rounds) < 20:
@@ -57,6 +80,10 @@ def main():
                 rows.append(f'    [{n},"{date}","{rival}","{"L" if home else "V"}",null,null,"{hora}"],')
     if not rows:
         sys.exit(f"No encontré partidos de {CLUB}")
+
+    # ############################################################
+    # ESCRITURA
+    # ############################################################
     body = "\n".join(rows).rstrip(",")
     new = src[:m.start(2)] + body + src[m.end(2):]
     if new == src:
@@ -64,5 +91,8 @@ def main():
     APP.write_text(new, encoding="utf-8")
     print("cambios")
 
+# ############################################################
+# PUNTO DE ENTRADA
+# ############################################################
 if __name__ == "__main__":
     main()

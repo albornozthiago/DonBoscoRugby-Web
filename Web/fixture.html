@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+<!-- ############################################################ -->
+<!-- CONFIGURACIÓN BÁSICA -->
+<!-- ############################################################ -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e1750" media="(prefers-color-scheme: light)">
@@ -9,9 +13,17 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Don Bosco Rugby">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- ############################################################ -->
+<!-- TÍTULO Y DESCRIPCIÓN -->
+<!-- ############################################################ -->
 <title>Fixture y formación · Don Bosco Rugby</title>
 <meta name="description" content="Fixture, resultados y formación de la Primera de Don Bosco en Primera B URBA 2026.">
 <link rel="canonical" href="https://albornozthiago.github.io/DonBoscoRugby-Web/fixture.html">
+
+<!-- ############################################################ -->
+<!-- REDES SOCIALES (OPEN GRAPH Y TWITTER) -->
+<!-- ############################################################ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Don Bosco Rugby">
@@ -26,6 +38,10 @@
 <meta name="twitter:title" content="Fixture y formación · Don Bosco Rugby">
 <meta name="twitter:description" content="Fixture, resultados y formación de la Primera de Don Bosco en Primera B URBA 2026.">
 <meta name="twitter:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+
+<!-- ############################################################ -->
+<!-- ICONOS, SCRIPTS Y ESTILOS -->
+<!-- ############################################################ -->
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
 <script src="js/boot.js"></script>
@@ -36,6 +52,10 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- ############################################################ -->
+<!-- MENÚ DE NAVEGACIÓN -->
+<!-- ############################################################ -->
 <nav class="menu" aria-label="Secciones">
   <button type="button" class="nv nv-prev" aria-label="Ver ítems anteriores del menú">&#8249;</button>
   <ul>
@@ -49,6 +69,9 @@
   <button type="button" class="nv nv-next" aria-label="Ver más ítems del menú">&#8250;</button>
 </nav>
 
+<!-- ############################################################ -->
+<!-- FRANJAS Y ESCUDO -->
+<!-- ############################################################ -->
 <div class="top">
   <svg class="stripes" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
     <g>
@@ -63,12 +86,23 @@
   <a href="index.html"><img class="crest" src="assets/crest.png" alt="Escudo del Ateneo Don Bosco" width="112" height="112"></a>
 </div>
 
+<!-- ############################################################ -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ############################################################ -->
 <main class="sheet">
+
+  <!-- ############################################################ -->
+  <!-- FIXTURE Y RESULTADOS -->
+  <!-- ############################################################ -->
   <section id="resultados">
     <div class="head">
       <h2 class="mega"><span class="b">Fixture</span> <span class="r">2026</span></h2>
       <p class="spaced" id="round-label">Segunda ronda</p>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- PRÓXIMO PARTIDO -->
+    <!-- ############################################################ -->
     <aside class="next" aria-live="polite">
       <p class="eyebrow">Próximo partido · Plantel superior</p>
       <div class="row">
@@ -81,12 +115,24 @@
       <p class="days" id="nx-days"></p>
       <p class="last" id="nx-last"></p>
     </aside>
+
+    <!-- ############################################################ -->
+    <!-- ESTADÍSTICAS -->
+    <!-- ############################################################ -->
     <div class="tiles" id="tiles"></div>
+
+    <!-- ############################################################ -->
+    <!-- RACHA DE LA TEMPORADA -->
+    <!-- ############################################################ -->
     <div class="formstrip-wrap">
       <span class="eyebrow">Cómo viene la temporada</span>
       <div class="formstrip" id="formstrip"></div>
       <p class="legend">G: ganado · E: empatado · P: perdido · punteado: por jugar. Cada casillero es una fecha.</p>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- FILTROS DEL FIXTURE -->
+    <!-- ############################################################ -->
     <div class="controls">
       <div class="seg" id="seg-round" role="group" aria-label="Ronda">
         <button type="button" data-r="2" aria-pressed="true">Segunda ronda</button>
@@ -100,6 +146,10 @@
         <button type="button" data-f="P" aria-pressed="false">Perdidos</button>
       </div>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- LISTA DE PARTIDOS -->
+    <!-- ############################################################ -->
     <ol class="fixture" id="fixture-list"></ol>
     <div class="src">
       <span>Primera B, plantel superior. El primer número es siempre el de Don Bosco.</span>
@@ -109,12 +159,19 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- FORMACIÓN XV -->
+  <!-- ############################################################ -->
   <section id="plantel">
     <div class="panel-title">
       <h3>Formación <span class="r">XV</span></h3>
       <p id="xv-match">Sábado 3 de octubre · vs Italiano</p>
       <span class="chip red" id="xv-res">Ganó 28 – 10</span>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- JUGADORES -->
+    <!-- ############################################################ -->
     <div class="xvgrid">
       <div><h4>Forwards · 1 al 8</h4><ol class="xv" id="xv-f"></ol></div>
       <div><h4>Backs · 9 al 15</h4><ol class="xv" id="xv-b"></ol></div>
@@ -122,6 +179,9 @@
   </section>
 </main>
 
+<!-- ############################################################ -->
+<!-- PIE DE PÁGINA -->
+<!-- ############################################################ -->
 <footer class="wrap">
   <div class="links">
     <a href="club.html">Sobre nosotros</a>
@@ -133,6 +193,10 @@
   <p>© 1967 Ateneo Cultural y Deportivo Don Bosco · Bernal</p>
   <p class="credit">Página web desarrollada por <a href="https://www.linkedin.com/in/thiago-albornoz/" target="_blank" rel="noopener">Albornoz Thiago Agustín</a></p>
 </footer>
+
+<!-- ############################################################ -->
+<!-- SCRIPT PRINCIPAL -->
+<!-- ############################################################ -->
 <script src="js/app.js"></script>
 </body>
 </html>

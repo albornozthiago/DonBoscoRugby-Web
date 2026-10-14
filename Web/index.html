@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+<!-- ############################################################ -->
+<!-- CONFIGURACIÓN BÁSICA -->
+<!-- ############################################################ -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e1750" media="(prefers-color-scheme: light)">
@@ -9,9 +13,17 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Don Bosco Rugby">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- ############################################################ -->
+<!-- TÍTULO Y DESCRIPCIÓN -->
+<!-- ############################################################ -->
 <title>Don Bosco Rugby - Sitio Web Oficial</title>
 <meta name="description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
 <link rel="canonical" href="https://albornozthiago.github.io/DonBoscoRugby-Web/">
+
+<!-- ############################################################ -->
+<!-- REDES SOCIALES (OPEN GRAPH Y TWITTER) -->
+<!-- ############################################################ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Don Bosco Rugby">
@@ -27,6 +39,10 @@
 <meta name="twitter:title" content="Don Bosco Rugby - Sitio Web Oficial">
 <meta name="twitter:description" content="Ateneo Cultural y Deportivo Don Bosco, Bernal. Fixture y resultados de Primera B URBA, formación, categorías, hockey y noticias del club.">
 <meta name="twitter:image" content="https://albornozthiago.github.io/DonBoscoRugby-Web/assets/dbr/og-image.jpg">
+
+<!-- ############################################################ -->
+<!-- DATOS ESTRUCTURADOS (SEO) -->
+<!-- ############################################################ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,6 +71,10 @@
   ]
 }
 </script>
+
+<!-- ############################################################ -->
+<!-- ICONOS, SCRIPTS Y ESTILOS -->
+<!-- ############################################################ -->
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
 <script src="js/boot.js"></script>
@@ -66,6 +86,10 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- ############################################################ -->
+<!-- MENÚ DE NAVEGACIÓN -->
+<!-- ############################################################ -->
 <nav class="menu" aria-label="Secciones">
   <button type="button" class="nv nv-prev" aria-label="Ver ítems anteriores del menú">&#8249;</button>
   <ul>
@@ -82,6 +106,9 @@
   <button type="button" class="nv nv-next" aria-label="Ver más ítems del menú">&#8250;</button>
 </nav>
 
+<!-- ############################################################ -->
+<!-- FRANJAS Y ESCUDO -->
+<!-- ############################################################ -->
 <div class="top">
   <svg class="stripes" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
     <g>
@@ -96,7 +123,14 @@
   <img class="crest" src="assets/crest.png" alt="Escudo del Ateneo Don Bosco" width="112" height="112">
 </div>
 
+<!-- ############################################################ -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ############################################################ -->
 <main class="sheet" id="inicio">
+
+  <!-- ############################################################ -->
+  <!-- PORTADA -->
+  <!-- ############################################################ -->
   <div class="hero">
     <div>
       <h1 class="mega"><span class="b">Don Bosco</span><br><span class="r">Rugby</span></h1>
@@ -105,8 +139,15 @@
     <div class="banner" role="img" aria-label="Escudo del Ateneo Don Bosco"></div>
   </div>
 
+  <!-- ############################################################ -->
+  <!-- SPONSORS -->
+  <!-- ############################################################ -->
   <section id="sponsors">
     <div class="head"><p class="spaced">Nos acompañan</p></div>
+
+    <!-- ############################################################ -->
+    <!-- CARRUSEL DE SPONSORS -->
+    <!-- ############################################################ -->
     <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Sponsors del club">
       <div class="car-view" data-dir="1" tabindex="0">
         <ul class="car-track">
@@ -136,13 +177,24 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- CATEGORÍAS -->
+  <!-- ############################################################ -->
   <section id="categorias">
     <div class="head">
       <h2 class="mega"><span class="b">Todas las</span> <span class="r">categorías</span></h2>
       <p class="sub">Desde la escuelita hasta la Primera, en Don Bosco hay un lugar para cada edad.</p>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- PESTAÑAS: CATEGORÍAS -->
+    <!-- ############################################################ -->
     <div class="seg tabs" role="tablist" aria-label="Categorías"><button type="button" role="tab" data-p="superior" aria-pressed="false">Plantel superior</button><button type="button" role="tab" data-p="femenino" aria-pressed="false">Rugby femenino</button><button type="button" role="tab" data-p="infantil" aria-pressed="false">Infantiles</button><button type="button" role="tab" data-p="juvenil" aria-pressed="false">Juveniles</button><button type="button" role="tab" data-p="veteranos" aria-pressed="false">Veteranos</button><button type="button" role="tab" data-p="hockey" aria-pressed="false">Hockey</button></div>
     <div class="panels">
+
+      <!-- ############################################################ -->
+      <!-- PANEL: PLANTEL SUPERIOR -->
+      <!-- ############################################################ -->
       <div class="panel" id="superior" role="tabpanel">
     <div class="sport">
       <div>
@@ -166,6 +218,10 @@
       </div>
     </div>
       </div>
+
+      <!-- ############################################################ -->
+      <!-- PANEL: FEMENINO -->
+      <!-- ############################################################ -->
       <div class="panel" id="femenino" role="tabpanel">
     <div class="sport rev">
       <div>
@@ -185,6 +241,10 @@
       </div>
     </div>
       </div>
+
+      <!-- ############################################################ -->
+      <!-- PANEL: INFANTIL -->
+      <!-- ############################################################ -->
       <div class="panel" id="infantil" role="tabpanel">
     <div class="sport">
       <div>
@@ -211,6 +271,10 @@
       </div>
     </div>
       </div>
+
+      <!-- ############################################################ -->
+      <!-- PANEL: JUVENIL -->
+      <!-- ############################################################ -->
       <div class="panel" id="juvenil" role="tabpanel">
     <div class="sport rev">
       <div>
@@ -232,6 +296,10 @@
       </div>
     </div>
       </div>
+
+      <!-- ############################################################ -->
+      <!-- PANEL: OCELOTES (VETERANOS) -->
+      <!-- ############################################################ -->
       <div class="panel" id="veteranos" role="tabpanel">
     <div class="sport">
       <div>
@@ -252,6 +320,10 @@
       </div>
     </div>
       </div>
+
+      <!-- ############################################################ -->
+      <!-- PANEL: HOCKEY -->
+      <!-- ############################################################ -->
       <div class="panel" id="hockey" role="tabpanel">
     <div class="sport rev">
       <div>
@@ -277,12 +349,19 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- SÚMATE -->
+  <!-- ############################################################ -->
   <section id="sumate">
     <div class="head">
       <h2 class="mega"><span class="b">Sumate</span> <span class="r">al Bosco</span></h2>
       <p class="spaced">Cinco razones</p>
     </div>
     <div class="join">
+
+      <!-- ############################################################ -->
+      <!-- CINCO RAZONES -->
+      <!-- ############################################################ -->
       <ol class="reasons">
         <li><div><b>Deporte</b><span>Es un medio más que un fin en sí mismo.</span></div></li>
         <li><div><b>Rugby &amp; Hockey</b><span>Sus valores valen dentro y fuera de la cancha. Son valores para la vida.</span></div></li>
@@ -290,6 +369,10 @@
         <li><div><b>Bien común</b><span>La educación de los jóvenes a través del deporte como herramienta formativa.</span></div></li>
         <li><div><b>Comunidad</b><span>Amistad, comprensión y solidaridad bajo la bendición de San Juan Bosco.</span></div></li>
       </ol>
+
+      <!-- ############################################################ -->
+      <!-- LLAMADO A SUMARSE -->
+      <!-- ############################################################ -->
       <div class="cta">
         <p class="lema">Hay un lugar<br><span>para vos en el Bosco</span></p>
         <p>Hacete socio del Don Bosco y sumate a la familia tricolor. Contanos cuál es tu razón para ser parte del Ateneo.</p>
@@ -307,11 +390,18 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- FIXTURE Y RESULTADOS -->
+  <!-- ############################################################ -->
   <section id="resultados">
     <div class="head">
       <h2 class="mega"><span class="b">Fixture</span> <span class="r">2026</span></h2>
       <p class="spaced">Primera B · plantel superior</p>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- PRÓXIMO PARTIDO -->
+    <!-- ############################################################ -->
     <aside class="next" aria-live="polite">
       <p class="eyebrow">Próximo partido · Plantel superior</p>
       <div class="row">
@@ -329,6 +419,9 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- EL CLUB -->
+  <!-- ############################################################ -->
   <section id="club">
     <div class="head">
       <h2 class="mega"><span class="b">El</span> <span class="r">club</span></h2>
@@ -344,20 +437,34 @@
 
   <div class="bandera" aria-hidden="true"></div>
 
+  <!-- ############################################################ -->
+  <!-- NOTICIAS -->
+  <!-- ############################################################ -->
   <section id="noticias">
     <div class="head">
       <h2 class="mega"><span class="b">Noti</span><span class="r">cias</span></h2>
       <p class="sub">Lo que pasa en el Bosco: partidos, obras, eventos y comunidad.</p>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- BUSCADOR Y FILTROS DE NOTICIAS -->
+    <!-- ############################################################ -->
     <div class="ntools">
       <div class="seg" id="seg-news" role="group" aria-label="Categoría de noticias"></div>
       <div class="search"><input id="nsearch" type="search" placeholder="Buscar una nota" aria-label="Buscar una nota" autocomplete="off"></div>
     </div>
+
+    <!-- ############################################################ -->
+    <!-- LISTADO DE NOTICIAS -->
+    <!-- ############################################################ -->
     <div class="news" id="news"></div>
     <div class="nmore"><button type="button" class="btn ghost" id="nmore">Ver más notas</button></div>
   </section>
 </main>
 
+<!-- ############################################################ -->
+<!-- PIE DE PÁGINA -->
+<!-- ############################################################ -->
 <footer class="wrap">
   <div class="links">
     <a href="club.html">Sobre nosotros</a>
@@ -369,6 +476,10 @@
   <p>© 1967 Ateneo Cultural y Deportivo Don Bosco · Bernal</p>
   <p class="credit">Página web desarrollada por <a href="https://www.linkedin.com/in/thiago-albornoz/" target="_blank" rel="noopener">Albornoz Thiago Agustín</a></p>
 </footer>
+
+<!-- ############################################################ -->
+<!-- SCRIPT PRINCIPAL -->
+<!-- ############################################################ -->
 <script src="js/app.js"></script>
 </body>
 </html>

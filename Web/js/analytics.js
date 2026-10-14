@@ -1,3 +1,6 @@
+// ############################################################
+// GOOGLE ANALYTICS 4
+// ############################################################
 /* Google Analytics 4: pegar acá el ID de medición (G-XXXXXXXXXX). Vacío, no carga nada. */
 (function () {
   var ID = "";

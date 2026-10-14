@@ -1,5 +1,9 @@
 /* Don Bosco Rugby — datos y comportamiento */
 (function () {
+
+  // ############################################################
+  // UTILIDADES Y NOMBRES DE FECHA
+  // ############################################################
   var MES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.", "jul.", "ago.", "sept.", "oct.", "nov.", "dic."];
   var MESL = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -12,6 +16,9 @@
   }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
+  // ############################################################
+  // DATOS: RESULTADOS (M)
+  // ############################################################
   /* [fecha, fecha ISO, rival, L/V, tantos DB, tantos rival, hora] — Fuente: URBA, Primera B 2026 */
   var M = [
     [1,"2026-03-14","Delta","L",27,17],
@@ -41,6 +48,10 @@
     [25,"2026-10-17","Liceo Militar","V",null,null,"15:30"],
     [26,"2026-10-24","Vicentinos","L",null,null,"15:30"]
   ];
+
+  // ############################################################
+  // FECHA DE HOY Y PRÓXIMO PARTIDO
+  // ############################################################
   var now = new Date();
   var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   function played(m) { return m[4] !== null; }
@@ -49,6 +60,9 @@
 
   function $(id) { return document.getElementById(id); }
 
+  // ############################################################
+  // PRÓXIMO PARTIDO
+  // ############################################################
   /* próximo partido (en el inicio y en fixture.html) */
   var last = null;
   M.forEach(function (m) { if (played(m)) last = m; });
@@ -68,6 +82,9 @@
     document.getElementById("nx-last").textContent = "Último resultado: " + (last[3] === "L" ? "Don Bosco " + last[4] + " – " + last[5] + " " + last[2] : last[2] + " " + last[5] + " – " + last[4] + " Don Bosco") + " (fecha " + last[0] + ")";
   }
 
+  // ############################################################
+  // ESTADÍSTICAS Y RACHA
+  // ############################################################
   /* estadísticas y racha */
   var pj = 0, g = 0, e = 0, p = 0, pf = 0, pc = 0;
   M.forEach(function (m) { if (played(m)) { pj++; pf += m[4]; pc += m[5]; if (m[4] > m[5]) g++; else if (m[4] === m[5]) e++; else p++; } });
@@ -90,6 +107,9 @@
   }).join("");
   }
 
+  // ############################################################
+  // FIXTURE CON FILTROS
+  // ############################################################
   /* fixture con filtros */
   var round = nextIdx >= 0 && nextIdx < 13 ? 1 : 2, filt = "all";
   function renderFx() {
@@ -117,6 +137,10 @@
     document.getElementById("fixture-list").innerHTML = html || '<li class="empty">No hay partidos con este filtro en esta ronda.</li>';
     document.getElementById("round-label").textContent = round === 1 ? "Primera ronda" : "Segunda ronda";
   }
+
+  // ############################################################
+  // BOTONES DE FILTRO
+  // ############################################################
   function bind(id, attr, cb) {
     var box = document.getElementById(id);
     box.addEventListener("click", function (e) {
@@ -133,12 +157,19 @@
   })();
   renderFx();
 
+  // ############################################################
+  // FORMACIÓN XV
+  // ############################################################
   /* formación XV: XV_FECHA es la fecha de M a la que corresponde (fecha, rival y resultado salen de M, así que se actualizan solos) */
   var XV_FECHA = 23;
   var IMG = {
     1: "assets/players/p1.jpg", 2: "assets/players/p2.jpg", 3: "assets/players/p3.jpg", 4: "assets/players/p4.jpg", 5: "assets/players/p5.jpg", 6: "assets/players/p6.jpg", 7: "assets/players/p7.jpg", 8: "assets/players/p8.jpg",
     9: "assets/players/p9.jpg", 10: "assets/players/p10.jpg", 11: "assets/players/p11.jpg", 12: "assets/players/p12.jpg", 13: "assets/players/p13.jpg", 14: "assets/players/p14.jpg", 15: "assets/players/p15.jpg"
   };
+
+  // ############################################################
+  // DATOS: JUGADORES (XV)
+  // ############################################################
   var XV = [
     [1,"Joaquín","Salguero","Pilar izquierdo"],
     [2,"Fernando","Gabba (C)","Hooker"],
@@ -177,6 +208,9 @@
     document.getElementById("xv-b").innerHTML = XV.slice(8).map(xvRow).join("");
   }
 
+  // ############################################################
+  // NOTICIAS
+  // ############################################################
   /* portal de noticias */
   var N = [
     {c:"Infraestructura", d:"2026-09-27", t:"Master Plan Don Bosco Rugby: ordenar el club para crecer", x:"El Ateneo presentó su Master Plan 2026, una herramienta de planificación para ordenar el crecimiento de la infraestructura deportiva, social e institucional.", u:"noticias/master-plan-don-bosco-rugby.html", i:"assets/noticias/infraestructura/masterplan/masterplandbr.avif"},
@@ -189,6 +223,10 @@
     {c:"Rugby", d:"2023-05-20", t:"Fecha URBA de rugby infantil en Don Bosco", x:"El club recibió a las divisiones infantiles de Varela Jr, Los Matreros, Centro Naval, Lanús RC, CAR y CUQ.", u:"noticias/fecha-urba-2023-rugby-infantil.html", i:"assets/noticias/rugby/fecha-urba-infantil/infantil.jpg"},
     {c:"Comunidad", d:"2023-04-01", t:"Don Bosco y Ciudad impulsan la campaña del Respeto", x:"Una campaña conjunta para cuidar el respeto dentro y fuera de la cancha.", u:"noticias/campana-del-respeto-don-bosco-ciudad.html", i:"assets/noticias/comunidad/respeto/respeto.jpeg"}
   ];
+
+  // ############################################################
+  // FILTROS Y BÚSQUEDA DE NOTICIAS
+  // ############################################################
   var CATS = ["Todas", "Rugby", "Hockey", "Eventos", "Infraestructura", "Comunidad", "Club"];
   var ncat = "Todas", nq = "", nshow = 6;
   var segN = document.getElementById("seg-news");
@@ -226,6 +264,9 @@
   }
 })();
 
+// ############################################################
+// CARRUSEL DE SPONSORS
+// ############################################################
 /* carrusel de sponsors: cada fila (data-dir 1 o -1) se duplica para el bucle infinito y se mueve sola; al tocarla en el celular se frena */
 (function () {
   var views = Array.prototype.slice.call(document.querySelectorAll(".car-view"));
@@ -264,6 +305,9 @@
   requestAnimationFrame(tick);
 })();
 
+// ############################################################
+// FOTOS: CARGA CON FUNDIDO
+// ############################################################
 /* fotos: marca .ld cuando cada una terminó de cargar (el CSS la muestra con fundido) y, ya cargada la página, baja las de los paneles ocultos para que no aparezcan de golpe al abrir la pestaña */
 (function () {
   var imgs = Array.prototype.slice.call(document.querySelectorAll(".vis img, .shot img"));
@@ -288,6 +332,9 @@
   window.addEventListener("load", function () { (window.requestIdleCallback || function (f) { setTimeout(f, 400); })(warm); });
 })();
 
+// ############################################################
+// PESTAÑAS
+// ############################################################
 /* pestañas */
 (function () {
   var groups = Array.prototype.slice.call(document.querySelectorAll(".tabs")).map(function (bar) {
@@ -314,6 +361,10 @@
   });
   if (location.hash) go(location.hash.slice(1), false);
 })();
+
+// ############################################################
+// FLECHAS DEL MENÚ
+// ############################################################
 /* flechas del menú de arriba (solo se ven en celulares): siempre visibles las dos; en los extremos dan la vuelta */
 (function () {
   var nav = document.querySelector("nav.menu"); if (!nav) return;
@@ -329,6 +380,9 @@
   next.addEventListener("click", function () { move(1); });
 })();
 
+// ############################################################
+// APARICIÓN AL SCROLL
+// ############################################################
 /* aparición al scroll: marca los elementos con .rv y les suma .rv-in cuando entran en pantalla (el CSS solo anima si no se pidió menos movimiento) */
 (function () {
   document.documentElement.classList.add("js-ok");

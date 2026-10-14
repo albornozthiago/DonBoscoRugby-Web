@@ -1,8 +1,16 @@
 /* Don Bosco Rugby — estilos */
+
+/* ############################################################ */
+/* BASE */
+/* ############################################################ */
 html { color-scheme: light; }
 body { margin: 0; }
 img { max-width: 100%; }
 [hidden] { display: none !important; }
+
+/* ############################################################ */
+/* VARIABLES Y TEMAS (CLARO, OSCURO AUTOMÁTICO Y OSCURO MANUAL) */
+/* ############################################################ */
 /* Layout: una hoja blanca sobre franjas azul/blanco/rojo en V, como los flyers del club; bloques azules con pestaña roja inclinada para fechas y números */
 :root {
   --ground: #e7e8f1;
@@ -52,6 +60,9 @@ h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { text-wrap: balance; }
 .wrap { max-width: 1120px; margin-inline: auto; }
 
+/* ############################################################ */
+/* FRANJAS SUPERIORES Y ESCUDO */
+/* ############################################################ */
 /* franjas superiores */
 .top { position: relative; margin-inline: -16px; }
 .stripes { display: block; width: 100%; height: clamp(84px, 13vw, 150px); }
@@ -60,16 +71,26 @@ h1, h2, h3 { text-wrap: balance; }
 .stripes .s3 { fill: var(--flag-white); }
 .crest { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); width: clamp(84px, 11vw, 112px); height: auto; z-index: 3; filter: drop-shadow(0 6px 8px rgba(0,0,20,.35)); }
 
+/* ############################################################ */
+/* HOJA PRINCIPAL */
+/* ############################################################ */
 .sheet {
   background: var(--paper); max-width: 1120px; margin-inline: auto;
   padding: 40px clamp(16px, 4vw, 48px) 48px;
   box-shadow: 0 18px 40px -18px rgba(5,10,60,.45); position: relative; z-index: 2;
 }
 
+/* ############################################################ */
+/* MENÚ DE NAVEGACIÓN */
+/* ############################################################ */
 nav.menu { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--navy-deep); margin-inline: -16px; overflow-x: auto; }
 nav.menu ul { list-style: none; margin: 0 auto; padding: 0 16px; max-width: 1120px; display: flex; gap: 2px; justify-content: center; white-space: nowrap; }
 nav.menu a { display: block; padding: 12px 13px; text-decoration: none; color: #fff; font-weight: 700; font-size: 11.5px; letter-spacing: .15em; text-transform: uppercase; }
 nav.menu a:hover { background: var(--red); }
+
+/* ############################################################ */
+/* FLECHAS DEL MENÚ (CELULAR) */
+/* ############################################################ */
 /* flechas del menú: solo en celulares y tablets chicas */
 nav.menu .nv { display: none; }
 @media (max-width: 900px) {
@@ -86,12 +107,18 @@ nav.menu .nv { display: none; }
   nav.menu .nv.nv-prev { left: 0; box-shadow: 12px 0 12px -2px var(--navy-deep); }
 }
 
+/* ############################################################ */
+/* TIPOGRAFÍA Y ENCABEZADOS */
+/* ############################################################ */
 .mega { font-family: var(--font-display); line-height: .86; letter-spacing: .005em; text-transform: uppercase; }
 .mega .b { color: var(--accent-text); }
 .mega .r { color: var(--red); }
 .spaced { letter-spacing: .5em; font-weight: 600; text-transform: uppercase; font-size: 13px; text-align: center; }
 .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
 
+/* ############################################################ */
+/* SEPARADOR DE SECCIONES (BANDERA) */
+/* ############################################################ */
 /* bandera a lo ancho de la hoja: separa las secciones */
 .bandera { margin: 72px calc(-1 * clamp(16px, 4vw, 48px)) 0; height: 44px; clip-path: polygon(24px 0, 100% 0, calc(100% - 24px) 100%, 0 100%);
   background: linear-gradient(to bottom, var(--navy) 0 14px, var(--red) 14px 28px, var(--flag-white) 28px 42px, var(--line) 42px 44px, transparent 44px); }
@@ -101,6 +128,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .head h2 { font-size: clamp(54px, 9vw, 104px); }
 .head .sub { color: var(--muted); max-width: 60ch; margin-inline: auto; }
 
+/* ############################################################ */
+/* PESTAÑAS DE FECHA Y CHIPS */
+/* ############################################################ */
 /* pestaña de fecha inclinada */
 .tab { display: inline-block; background: var(--red); color: #fff; padding: 6px 14px 4px; transform: skewX(-10deg); text-align: center; min-width: 72px; }
 .tab > span { display: block; transform: skewX(10deg); }
@@ -110,6 +140,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .chip { display: inline-block; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; }
 .chip.red { background: var(--red); }
 
+/* ############################################################ */
+/* PORTADA Y PRÓXIMO PARTIDO */
+/* ############################################################ */
 /* portada */
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
 .hero h1 { font-size: clamp(64px, 11vw, 128px); }
@@ -123,6 +156,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .next .days { margin-top: 16px; font-family: var(--font-display); font-size: 30px; letter-spacing: .04em; border-top: 1px solid rgba(255,255,255,.25); padding-top: 10px; }
 .next .last { margin-top: 10px; font-size: 12px; opacity: .9; }
 
+/* ############################################################ */
+/* BANNER DE PORTADA */
+/* ############################################################ */
 /* banner de portada: si existe assets/dbr/bandera-web.jpg se ve la foto; si no, el escudo sobre las franjas */
 .banner { align-self: stretch; min-height: 300px; border-bottom: 6px solid var(--red); background:
   url("../assets/dbr/bandera-web.jpg") 55% 40% / cover no-repeat,
@@ -130,6 +166,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
   linear-gradient(135deg, transparent 0 38%, rgba(255,255,255,.9) 38% 44%, transparent 44%),
   linear-gradient(135deg, var(--navy-deep) 0 38%, var(--navy) 38%); }
 
+/* ############################################################ */
+/* ESCUDO DEL RIVAL */
+/* ############################################################ */
 /* escudo del rival: assets/clubs/{nombre}.png; sin archivo, se muestran las iniciales */
 .rc { position: relative; flex: none; width: 40px; height: 40px; display: grid; place-items: center; }
 .rc img { display: block; width: 100%; height: 100%; object-fit: contain; background: #f7f7fa; padding: 3px; border-radius: 6px; }
@@ -140,6 +179,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .next .rc { width: 48px; height: 48px; }
 .next .rc .i { font-size: 24px; }
 
+/* ############################################################ */
+/* FIXTURE Y RESULTADOS */
+/* ############################################################ */
 /* fixture y resultados */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin-bottom: 18px; }
 .tile { background: var(--navy); color: #fff; padding: 12px 14px; }
@@ -181,6 +223,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .src { margin-top: 16px; font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; }
 .src a { font-weight: 800; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
 
+/* ############################################################ */
+/* FORMACIÓN XV */
+/* ############################################################ */
 /* formación */
 .panel-title { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; text-align: center; align-items: center; }
 .panel-title h3 { font-family: var(--font-display); font-size: clamp(54px, 8vw, 92px); line-height: .88; text-transform: uppercase; font-weight: 400; }
@@ -197,6 +242,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .xv .who small { display: block; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; opacity: .78; margin-top: 3px; }
 .xv img { display: block; width: 120px; height: 100%; min-height: 74px; object-fit: cover; object-position: center top; }
 
+/* ############################################################ */
+/* CATEGORÍAS */
+/* ############################################################ */
 /* disciplinas */
 .sport { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(20px, 4vw, 48px); align-items: end; }
 .sport .kicker { font-family: var(--font-display); font-size: clamp(26px, 4vw, 40px); color: var(--red); text-transform: uppercase; letter-spacing: .02em; }
@@ -206,28 +254,51 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .photo { background: #f7f7fa; display: flex; justify-content: center; align-self: stretch; align-items: flex-end; border-bottom: 6px solid var(--red); }
 .photo img { display: block; max-height: 460px; width: auto; max-width: 100%; }
 
+/* ############################################################ */
+/* SECCIONES DE CATEGORÍA */
+/* ############################################################ */
 /* secciones de disciplina (hockey, rugby femenino, infantil, juvenil, veteranos) */
 .sport .vis { align-self: stretch; min-height: 220px; border-bottom: 6px solid var(--red); background:
   url("../assets/crest.png") center / auto 46% no-repeat,
   linear-gradient(135deg, transparent 0 38%, rgba(255,255,255,.9) 38% 44%, transparent 44%),
   linear-gradient(135deg, var(--navy-deep) 0 38%, var(--navy) 38%); }
+
+/* ############################################################ */
+/* MAPA DE CONTACTO */
+/* ############################################################ */
 /* mapa de contacto: ocupa el lugar del bloque con escudo */
 .sport .vis.map { position: relative; background: var(--navy-deep); min-height: 280px; overflow: hidden; }
 .sport .vis.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ############################################################ */
+/* FOTOS EN LAS SECCIONES */
+/* ############################################################ */
 /* con foto: foto a la izquierda y texto a la derecha; la foto tiene proporción fija, no depende del largo del texto */
 .sport:has(.vis.ph) { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
 .sport .vis.ph { order: -1; align-self: start; background: none; min-height: 0; overflow: hidden; aspect-ratio: 4 / 5; }
 .sport .vis.ph img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+
+/* ############################################################ */
+/* PAR DE FOTOS */
+/* ############################################################ */
 /* par de fotos: una abajo de la otra, ocupan todo el alto de la sección (cada foto es absoluta dentro de su caja para que Safari no las rompa) */
 .sport .vis.ph.duo { display: flex; flex-direction: column; gap: 6px; aspect-ratio: auto; align-self: stretch; min-height: 380px; }
 .sport .vis.ph.duo .shot { position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; }
 .sport .vis.ph.duo .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sport .vis.ph.duo .shot:first-child img { object-position: center 30%; }
+
+/* ############################################################ */
+/* ESCUDO CON FONDO TRANSPARENTE */
+/* ############################################################ */
 /* escudo con fondo transparente: se muestra entero, sin recorte ni línea roja */
 .sport .vis.ph.logo { border-bottom: 0; overflow: visible; }
 .sport .vis.ph.logo img { object-fit: contain; }
 #predio .vis.ph img { object-position: 80% center; }
 #juvenil .vis.ph img { object-position: 38% 40%; }
+
+/* ############################################################ */
+/* FOTO DE GRUPO */
+/* ############################################################ */
 /* foto de grupo: todo el ancho, recortada arriba y abajo para dejar la franja con la gente */
 #consejo .vis.ph { aspect-ratio: 1 / 1; }
 #consejo .vis.ph img { object-position: center 72%; }
@@ -249,11 +320,17 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .sport .btns .btn { margin-top: 0; }
 .sport.rev > :first-child { order: 2; }
 
+/* ############################################################ */
+/* PESTAÑAS */
+/* ############################################################ */
 /* pestañas: una disciplina o página a la vez */
 .tabs { margin-bottom: 24px; justify-content: center; }
 .panels > .panel[hidden] { display: none; }
 .panel { scroll-margin-top: 56px; }
 
+/* ############################################################ */
+/* LISTAS */
+/* ############################################################ */
 /* listas dentro de las secciones */
 .sport .rows { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
 .sport .rows.one { grid-template-columns: minmax(0, 1fr); }
@@ -262,6 +339,9 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .sport .reasons { margin-top: 18px; gap: 10px; }
 .sport .reasons li::before { font-size: 30px; padding: 5px 10px 1px; }
 
+/* ############################################################ */
+/* NOTICIAS */
+/* ############################################################ */
 /* portal de noticias */
 .ntools { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .search { flex: 1 1 220px; max-width: 340px; min-width: 0; }
@@ -286,6 +366,10 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .art.ph { min-height: 0; background: var(--navy-deep); display: block; aspect-ratio: 16 / 9; overflow: hidden; margin: -18px -18px 0; }
 .card.f .art.ph { margin: 0; aspect-ratio: auto; min-height: 220px; }
 .art.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ############################################################ */
+/* PÁGINA DE NOTA (noticias/*.html) */
+/* ############################################################ */
 .post { padding-top: 56px; }
 .post .back { display: inline-block; margin-bottom: 20px; font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
 .post article { max-width: 760px; margin-inline: auto; }
@@ -305,12 +389,19 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .post .logos img { width: 100%; max-width: 120px; height: 96px; object-fit: contain; }
 .post .btns { max-width: 760px; margin: 40px auto 0; }
 .nmore { text-align: center; margin-top: 18px; }
+
+/* ############################################################ */
+/* BOTONES */
+/* ############################################################ */
 .btn { display: inline-block; background: var(--red); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 14px 22px; border: 0; cursor: pointer; }
 .btn:hover { background: var(--navy-deep); }
 .btn.ghost { background: transparent; color: var(--ink); border: 2px solid var(--navy); }
 .btn.ghost:hover { background: var(--navy); color: #fff; }
 .btn.white:hover { background: #fff; color: var(--red); }
 
+/* ############################################################ */
+/* EL CLUB */
+/* ############################################################ */
 /* el club */
 .club { margin-bottom: 40px; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
 .club .story p + p { margin-top: 12px; }
@@ -329,10 +420,16 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .predio h3 { font-family: var(--font-display); font-weight: 400; font-size: 44px; line-height: .95; text-transform: uppercase; }
 .predio p { font-size: 14px; opacity: .93; }
 
+/* ############################################################ */
+/* SPONSORS */
+/* ############################################################ */
 /* sponsors */
 .sponsors { background: #f7f7fa; padding: 16px; border: 1px solid var(--line); }
 .sponsors img { display: block; width: 100%; height: auto; }
 
+/* ############################################################ */
+/* SÚMATE */
+/* ############################################################ */
 /* sumate */
 .join { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(20px, 4vw, 48px); }
 .reasons { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: r; }
@@ -355,6 +452,9 @@ footer .credit { margin-top: 6px; }
 footer .credit a { color: var(--accent-text); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: center; font-weight: 700; text-transform: uppercase; }
 
+/* ############################################################ */
+/* ADAPTACIÓN A TABLET (HASTA 900 PX) */
+/* ############################################################ */
 @media (max-width: 900px) {
   .hero, .sport, .join, .club, .card.f { grid-template-columns: minmax(0, 1fr); }
   .fixture, .xvgrid, .facts { grid-template-columns: minmax(0, 1fr); }
@@ -372,6 +472,10 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .sport.rev > :first-child { order: 0; }
   .photo img { max-height: 340px; }
 }
+
+/* ############################################################ */
+/* ADAPTACIÓN A CELULAR (HASTA 560 PX) */
+/* ############################################################ */
 @media (max-width: 560px) {
   .sport .rows { grid-template-columns: minmax(0, 1fr); }
   .news { grid-template-columns: minmax(0, 1fr); }
@@ -384,8 +488,15 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .xv img { width: 92px; }
   .spaced { letter-spacing: .3em; }
 }
+
+/* ############################################################ */
+/* SCROLL SUAVE */
+/* ############################################################ */
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
+/* ############################################################ */
+/* CARRUSEL DE SPONSORS */
+/* ############################################################ */
 /* carrusel de sponsors: dos filas en sentidos opuestos, fichas parejas sobre fondo blanco (los logos son PNG sin fondo) y bordes que se desvanecen */
 .carousel { display: grid; gap: 10px; padding: 14px 0; background: var(--logo-bg); border: 1px solid var(--logo-line); border-top: 4px solid var(--red); border-bottom: 4px solid var(--navy); }
 .car-view { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
@@ -397,13 +508,24 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
 .car-foot { margin-top: 12px; display: flex; justify-content: flex-end; }
 #sponsors { margin-top: 40px; }
 .src-link { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
+
+/* ############################################################ */
+/* CARRUSEL: AJUSTE EN CELULAR */
+/* ############################################################ */
 @media (max-width: 560px) {
   .car-item { width: 150px; height: 68px; padding: 0 14px; }
   .car-item img { max-height: 44px; max-width: 118px; }
 }
 
+/* ############################################################ */
+/* ANIMACIONES */
+/* ############################################################ */
 /* animaciones: todo dentro de no-preference, así quien pidió menos movimiento ve el sitio quieto. Solo se animan transform y opacity */
 @media (prefers-reduced-motion: no-preference) {
+
+  /* ############################################################ */
+  /* ANIMACIÓN: PORTADA */
+  /* ############################################################ */
   /* portada: las franjas entran desde los costados y se juntan en el escudo, que aparece al final */
   @keyframes stripe-l { from { transform: translateX(-640px); } }
   @keyframes stripe-r { from { transform: translateX(640px); } }
@@ -414,14 +536,24 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .stripes polygon:nth-child(3), .stripes polygon:nth-child(6) { animation-delay: .16s; }
   .crest { animation: crest-in .6s .5s cubic-bezier(.2,1.2,.3,1) backwards; }
 
+  /* ############################################################ */
+  /* ANIMACIÓN: APARICIÓN AL SCROLL */
+  /* ############################################################ */
   /* aparición al scroll: el JS marca los elementos con .rv y les suma .rv-in al entrar en pantalla; sin JS no se oculta nada */
   @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
   @keyframes tab-in { from { opacity: 0; transform: translateX(-22px) skewX(-10deg); } }
   .js:not(.js-late) :is(.head, .panel-title, .card, .fx, .xv li, .sport, .join, .next):not(.rv-in) { opacity: 0; }
   .rv.rv-in { opacity: 1; animation: rise .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
+
+  /* ############################################################ */
+  /* ANIMACIÓN: PESTAÑAS ROJAS */
+  /* ############################################################ */
   /* las pestañas rojas se encajan de costado */
   .rv-in .tab { animation: tab-in .45s cubic-bezier(.2,.9,.3,1.2) backwards; animation-delay: calc(var(--d, 0s) + .15s); }
 
+  /* ############################################################ */
+  /* ANIMACIÓN: BOTONES */
+  /* ############################################################ */
   /* botones: se rellenan de izquierda a derecha */
   .btn { --fill: var(--navy-deep); background: var(--red) linear-gradient(var(--fill), var(--fill)) no-repeat left center / 0 100%; transition: background-size .3s ease, color .3s ease, border-color .3s ease; }
   .btn:hover, .btn:active { background: var(--red) linear-gradient(var(--fill), var(--fill)) no-repeat left center / 100% 100%; }
@@ -429,6 +561,9 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   .btn.ghost:hover, .btn.ghost:active { background: transparent linear-gradient(var(--fill), var(--fill)) no-repeat left center / 100% 100%; color: #fff; border-color: var(--red); }
   .btn.white:hover, .btn.white:active { background: #fff; }
 
+  /* ############################################################ */
+  /* ANIMACIÓN: TARJETAS DE NOTICIAS */
+  /* ############################################################ */
   /* tarjetas de noticias: suben un poco y la foto hace zoom (con mouse al pasar, en el celular al tocar) */
   .card { transition: transform .25s ease, box-shadow .25s ease; }
   .art.ph img { transition: transform .5s ease; }
@@ -439,6 +574,9 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
   }
 }
 
+/* ############################################################ */
+/* TÁCTIL (ANDROID E iOS) */
+/* ############################################################ */
 /* táctil (Android e iOS): zonas de toque de 44 px y campos de 16 px para que iOS no haga zoom */
 @media (pointer: coarse) {
   .btn, .seg button, .social a { min-height: 44px; }
@@ -451,6 +589,9 @@ footer .links { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 18p
 }
 @media (max-width: 560px) { .search input { font-size: 16px; } }
 
+/* ############################################################ */
+/* FOTOS: CARGA CON FUNDIDO */
+/* ############################################################ */
 /* fotos: fondo con brillo mientras cargan y fundido al terminar (el JS suma .ld; sin JS se ven normales) */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes shimmer { to { background-position: -200% 0; } }
