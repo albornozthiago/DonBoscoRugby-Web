@@ -77,13 +77,13 @@
 <!-- ############################################################ -->
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
-<script src="js/boot.js?v=20261016b"></script>
-<script src="js/analytics.js?v=20261016b" async></script>
+<script src="js/boot.js?v=20261016e"></script>
+<script src="js/analytics.js?v=20261016e" async></script>
 <link rel="preload" as="image" href="assets/dbr/bandera-web.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=block">
-<link rel="stylesheet" href="css/styles.css?v=20261016b">
+<link rel="stylesheet" href="css/styles.css?v=20261016e">
 </head>
 <body>
 
@@ -426,15 +426,16 @@
   <section id="stream">
     <div class="head">
       <h2 class="mega"><span class="b">Stream</span> <span class="r">en vivo</span></h2>
-      <p class="sub">Los partidos del Bosco se transmiten por YouTube. Acá está la última transmisión; para ver si hay uno en vivo o los anteriores, entrá al canal.</p>
+      <p class="sub">Los partidos del Bosco se transmiten por YouTube. Cuando hay partido en vivo, se ve acá. Si no, queda la última transmisión.</p>
     </div>
     <div class="stream">
+      <p class="st-title"><span class="st-live" id="st-live" hidden>En vivo</span><span id="st-title">Última transmisión</span></p>
       <div class="player">
         <iframe src="https://www.youtube.com/embed/d45PKPGWZ_I?rel=0" title="Última transmisión de Don Bosco Rugby en YouTube" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
       <div class="btns">
         <a class="btn" href="https://www.youtube.com/@DonBoscoRugbyOficial/streams" target="_blank" rel="noopener">Ver todas las transmisiones</a>
-        <a class="btn ghost" href="https://www.youtube.com/@DonBoscoRugbyOficial?sub_confirmation=1" target="_blank" rel="noopener">Suscribirte al canal</a>
+        <a class="btn" href="https://www.youtube.com/@DonBoscoRugbyOficial?sub_confirmation=1" target="_blank" rel="noopener">Suscribite al canal</a>
       </div>
     </div>
   </section>
@@ -502,6 +503,6 @@
 <!-- ############################################################ -->
 <!-- SCRIPT PRINCIPAL -->
 <!-- ############################################################ -->
-<script src="js/app.js?v=20261016b"></script>
+<script src="js/app.js?v=20261016e"></script>
 </body>
 </html>

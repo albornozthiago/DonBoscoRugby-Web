@@ -431,9 +431,12 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 /* STREAM */
 /* ############################################################ */
 .stream { width: 100%; max-width: 860px; margin-inline: auto; }
+.stream .st-title { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.stream .st-live { flex: none; background: var(--red); color: #fff; padding: 4px 10px; font-size: 12px; letter-spacing: .14em; transform: skewX(-8deg); }
+.stream .st-live::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #fff; }
 .stream .player { position: relative; aspect-ratio: 16 / 9; background: var(--navy-deep); border-top: 6px solid var(--red); }
 .stream .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.stream .btns { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.stream .btns { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 /* ############################################################ */
 /* SÚMATE */

@@ -415,3 +415,18 @@
     });
   }
 })();
+
+/* ############################################################ */
+/* STREAM: video en vivo o último, desde data/stream.json (lo actualiza scripts/actualizar_stream.py) */
+/* ############################################################ */
+(function () {
+  var f = document.querySelector("#stream iframe");
+  if (!f || !window.fetch) return;
+  fetch("data/stream.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (s) {
+    if (!/^[\w-]{11}$/.test(s.id)) return;
+    f.src = "https://www.youtube.com/embed/" + s.id + "?rel=0" + (s.live ? "&autoplay=1&mute=1" : "");
+    document.getElementById("st-title").textContent = s.title || "Última transmisión";
+    document.getElementById("st-live").hidden = !s.live;
+    f.title = s.live ? "Transmisión en vivo de Don Bosco Rugby" : "Última transmisión de Don Bosco Rugby";
+  }).catch(function () {});
+})();
