@@ -428,6 +428,14 @@ section { margin-top: 72px; scroll-margin-top: 56px; }
 .sponsors img { display: block; width: 100%; height: auto; }
 
 /* ############################################################ */
+/* STREAM */
+/* ############################################################ */
+.stream { width: 100%; max-width: 860px; margin-inline: auto; }
+.stream .player { position: relative; aspect-ratio: 16 / 9; background: var(--navy-deep); border-top: 6px solid var(--red); }
+.stream .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.stream .btns { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+/* ############################################################ */
 /* SÚMATE */
 /* ############################################################ */
 /* sumate */
