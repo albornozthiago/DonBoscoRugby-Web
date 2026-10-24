@@ -3,11 +3,13 @@ name: Actualizar resultados
 # Baja el fixture de la URBA y el stream de YouTube y, si cambió algún resultado, commitea en main y vuelve a publicar.
 on:
   schedule:
-    # sábados y domingos (UTC): cada 30 min entre las 16 y las 03 hs de Argentina
-    # (en :11 y :41 y no en :00/:30, que es cuando GitHub más demora o saltea corridas)
-    - cron: "11,41 19-23,0-6 * * 6,0"
-    # resto de la semana: una vez por día
-    - cron: "0 13 * * 1-5"
+    # sábado (hora Argentina, UTC-3): cada 10 min todo el día; la madrugada del domingo en UTC cierra la noche del sábado
+    # (en minutos terminados en 3 y no en :00/:30, que es cuando GitHub más demora o saltea corridas)
+    - cron: "3,13,23,33,43,53 3-23 * * 6"
+    - cron: "3,13,23,33,43,53 0-2 * * 0"
+    # viernes y domingo: cada 2 horas, de 9 a 19 hs de Argentina
+    - cron: "17 12,14,16,18,20,22 * * 5,0"
+    # lunes a jueves: nada
   workflow_dispatch:
 
 permissions:
