@@ -83,6 +83,24 @@
   }
 
   // ############################################################
+  // PLAYOFF DE ASCENSO
+  // ############################################################
+  /* con data/playoff.json en juega:true (terminadas las 26 fechas y Don Bosco 2º a 5º; lo escribe scripts/actualizar_resultados.py)
+     el próximo partido pasa a ser la semifinal de ascenso */
+  if ($("nx-tab")) {
+    fetch("data/playoff.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (o) {
+      if (!o.juega) return;
+      var d = o.fecha ? pd(o.fecha) : null;
+      $("nx-eyebrow").textContent = "Próximo partido · Playoff de ascenso";
+      $("nx-tab").innerHTML = d ? '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>' : '<span class="d">SF</span><span class="m">Playoff</span>';
+      $("nx-vs").innerHTML = crest(o.rival) + "<span>vs " + esc(o.rival) + "</span>";
+      $("nx-sub").textContent = "Semifinal · " + (o.local ? "Local · Predio de Bernal" : "Visitante") + (o.hora ? " · " + o.hora + " hs" : "");
+      var diff = d ? Math.round((d - today) / 86400000) : null;
+      $("nx-days").textContent = diff === null ? "" : diff <= 0 ? "Se juega hoy" : (diff === 1 ? "Falta 1 día" : "Faltan " + diff + " días");
+    }).catch(function () {});
+  }
+
+  // ############################################################
   // ESTADÍSTICAS Y RACHA
   // ############################################################
   /* estadísticas y racha */
