@@ -64,12 +64,40 @@ def playoff(champ, names):
             rival = tabla[5 - pos + 1]  # 2-5, 3-4
             out = {"juega": True, "pos": pos, "rival": names.get(norm(rival), rival), "local": pos in (2, 3)}
             # si la URBA ya cargó el cruce (ronda PLAYOFF), vale lo que dice ella
+            # (el primer cruce es la semi; si ya hay otro posterior, es la final)
+            cruces = []
             for r in champ["rounds"]:
                 for g in r["matches"] if not r["name"].startswith("Fecha") else []:
                     lo, vi = g["local_team"]["name"], g["visit_team"]["name"]
                     if CLUB in (lo, vi):
-                        rv = vi if lo == CLUB else lo
-                        out.update({"rival": names.get(norm(rv), rv), "local": lo == CLUB, "fecha": r["playdate"][:10]})
+                        cruces.append((r, g, lo, vi))
+            for i, (r, g, lo, vi) in enumerate(cruces):
+                rv = vi if lo == CLUB else lo
+                datos = {"rival": names.get(norm(rv), rv), "local": lo == CLUB, "fecha": r["playdate"][:10]}
+                if g["fulfilled"] and not g["suspended"]:
+                    a, b = g["local_team_score"], g["visit_team_score"]
+                    datos["db"], datos["rv"] = (a, b) if lo == CLUB else (b, a)
+                if i == 0:
+                    out.update(datos)
+                else:
+                    out["final"] = datos
+            # sin final cargada en la URBA: si ganamos la semi, el rival es el ganador de la otra semi
+            # (fecha, sede y hora de la final se cargan a mano en playoff.json y acá se conservan)
+            if "final" not in out and out.get("db", 0) > out.get("rv", 0):
+                for r in champ["rounds"]:
+                    for g in r["matches"] if not r["name"].startswith("Fecha") else []:
+                        lo, vi = g["local_team"]["name"], g["visit_team"]["name"]
+                        if CLUB not in (lo, vi) and g["fulfilled"] and not g["suspended"]:
+                            w = lo if g["local_team_score"] > g["visit_team_score"] else vi
+                            out["final"] = {"rival": names.get(norm(w), w), "local": False}
+                if "final" in out and PLAYOFF.exists():
+                    try:
+                        prev = json.loads(PLAYOFF.read_text(encoding="utf-8")).get("final", {})
+                    except ValueError:
+                        prev = {}
+                    for k in ("fecha", "sede", "hora"):
+                        if k in prev:
+                            out["final"][k] = prev[k]
     new = json.dumps(out, ensure_ascii=False, indent=2) + "\n"
     if PLAYOFF.exists() and PLAYOFF.read_text(encoding="utf-8") == new:
         return False

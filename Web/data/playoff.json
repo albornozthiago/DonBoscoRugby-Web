@@ -3,5 +3,13 @@
   "pos": 4,
   "rival": "Liceo Naval",
   "local": false,
-  "fecha": "2026-10-31"
+  "fecha": "2026-10-31",
+  "db": 17,
+  "rv": 10,
+  "final": {
+    "rival": "Manuel Belgrano",
+    "local": false,
+    "fecha": "2026-11-14",
+    "sede": "La Plata Rugby"
+  }
 }

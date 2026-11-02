@@ -90,11 +90,26 @@
   if ($("nx-tab")) {
     fetch("data/playoff.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (o) {
       if (!o.juega) return;
+      var f = o.final && o.final.db === undefined ? o.final : null;
+      if (!f && o.db !== undefined) {
+        // semi jugada: se muestra el resultado hasta que la URBA cargue la final
+        var gano = o.db > o.rv;
+        $("nx-eyebrow").textContent = "Playoff de ascenso · Semifinal";
+        $("nx-tab").innerHTML = '<span class="d">SF</span><span class="m">Playoff</span>';
+        $("nx-vs").innerHTML = crest(o.rival) + "<span>" + (o.local ? "Don Bosco " + o.db + " – " + o.rv + " " + esc(o.rival) : esc(o.rival) + " " + o.rv + " – " + o.db + " Don Bosco") + "</span>";
+        $("nx-sub").textContent = gano ? "Ganamos y pasamos a la final" : "Quedamos eliminados";
+        $("nx-days").textContent = gano ? "Final: fecha a confirmar" : "";
+        return;
+      }
+      if (f) {
+        if ($("nx-last") && o.db !== undefined) $("nx-last").textContent = "Semifinal: " + (o.local ? "Don Bosco " + o.db + " – " + o.rv + " " + o.rival : o.rival + " " + o.rv + " – " + o.db + " Don Bosco");
+        o = f;
+      }
       var d = o.fecha ? pd(o.fecha) : null;
       $("nx-eyebrow").textContent = "Próximo partido · Playoff de ascenso";
       $("nx-tab").innerHTML = d ? '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>' : '<span class="d">SF</span><span class="m">Playoff</span>';
       $("nx-vs").innerHTML = crest(o.rival) + "<span>vs " + esc(o.rival) + "</span>";
-      $("nx-sub").textContent = "Semifinal · " + (o.local ? "Local · Predio de Bernal" : "Visitante") + (o.hora ? " · " + o.hora + " hs" : "");
+      $("nx-sub").textContent = (f ? "Final" : "Semifinal") + " · " + (o.sede ? o.sede : o.local ? "Local · Predio de Bernal" : "Visitante") + (o.hora ? " · " + o.hora + " hs" : "");
       var diff = d ? Math.round((d - today) / 86400000) : null;
       $("nx-days").textContent = diff === null ? "" : diff <= 0 ? "Se juega hoy" : (diff === 1 ? "Falta 1 día" : "Faltan " + diff + " días");
     }).catch(function () {});
