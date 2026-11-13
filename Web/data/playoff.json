@@ -8,8 +8,7 @@
   "rv": 10,
   "final": {
     "rival": "Manuel Belgrano",
-    "local": false,
-    "fecha": "2026-11-14",
-    "sede": "La Plata Rugby"
+    "local": true,
+    "fecha": "2026-11-14"
   }
 }
