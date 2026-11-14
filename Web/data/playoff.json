@@ -9,6 +9,8 @@
   "final": {
     "rival": "Manuel Belgrano",
     "local": true,
-    "fecha": "2026-11-14"
+    "fecha": "2026-11-14",
+    "db": 17,
+    "rv": 22
   }
 }
