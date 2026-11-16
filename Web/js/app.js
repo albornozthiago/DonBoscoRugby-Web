@@ -104,7 +104,7 @@
       $("nx-eyebrow").textContent = "Playoff de ascenso · " + (esFinal ? "Final" : "Semifinal");
       $("nx-tab").innerHTML = '<span class="d">' + (esFinal ? "F" : "SF") + '</span><span class="m">Playoff</span>';
       $("nx-vs").innerHTML = crest(ult.rival) + "<span>" + esc(poScore(ult)) + "</span>";
-      $("nx-sub").textContent = esFinal ? (gano ? "¡Ascendimos a Primera A!" : "Cayó la final, seguimos en Primera B") : (gano ? "Ganamos y pasamos a la final" : "Quedamos eliminados");
+      $("nx-sub").textContent = esFinal ? (gano ? "¡Ascendimos a Primera A!" : "Seguimos en Primera B, gracias a todos por bancar al Bosco") : (gano ? "Ganamos y pasamos a la final" : "Quedamos eliminados");
       $("nx-days").textContent = !esFinal && gano ? "Final: fecha a confirmar" : "";
       if ($("nx-last") && esFinal && semiOk) $("nx-last").textContent = "Semifinal: " + poScore(o);
       return;

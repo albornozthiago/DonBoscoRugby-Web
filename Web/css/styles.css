@@ -49,15 +49,10 @@ img { max-width: 100%; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
 * { box-sizing: border-box; }
 body {
-  background-color: var(--ground);
-  background-image: linear-gradient(to top, color-mix(in srgb, var(--navy) 80%, var(--ground)) 0%, color-mix(in srgb, var(--navy) 80%, var(--ground)) 15%, color-mix(in srgb, var(--red) 60%, var(--ground)) 50%, color-mix(in srgb, var(--navy) 80%, var(--ground)) 85%, color-mix(in srgb, var(--navy) 80%, var(--ground)) 100%);
-  background-size: 100% 300%; background-position: 0% 0%; animation: fondo 14s ease-in-out infinite;
-  color: var(--ink);
+  background: var(--ground); color: var(--ink);
   font-family: var(--font-body); font-size: 15px; line-height: 1.55;
   padding-inline: 16px; padding-block: 0 calc(40px + env(safe-area-inset-bottom, 0px));
 }
-@keyframes fondo { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 0% 100%; } }
-@media (prefers-reduced-motion: reduce) { body { animation: none; } }
 a { color: inherit; }
 button, input { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
