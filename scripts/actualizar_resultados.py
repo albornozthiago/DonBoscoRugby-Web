@@ -95,7 +95,7 @@ def playoff(champ, names):
                         prev = json.loads(PLAYOFF.read_text(encoding="utf-8")).get("final", {})
                     except ValueError:
                         prev = {}
-                    for k in ("fecha", "sede", "hora"):
+                    for k in ("fecha", "sede", "hora", "db", "rv"):
                         if k in prev:
                             out["final"][k] = prev[k]
     new = json.dumps(out, ensure_ascii=False, indent=2) + "\n"

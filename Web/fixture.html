@@ -44,12 +44,12 @@
 <!-- ############################################################ -->
 <link rel="icon" href="assets/crest.png">
 <link rel="apple-touch-icon" href="assets/crest.png">
-<script src="js/boot.js?v=20261028j"></script>
-<script src="js/analytics.js?v=20261028j" async></script>
+<script src="js/boot.js?v=20261116e"></script>
+<script src="js/analytics.js?v=20261116e" async></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=block">
-<link rel="stylesheet" href="css/styles.css?v=20261028j">
+<link rel="stylesheet" href="css/styles.css?v=20261116e">
 </head>
 <body>
 
@@ -136,8 +136,9 @@
     <!-- ############################################################ -->
     <div class="controls">
       <div class="seg" id="seg-round" role="group" aria-label="Ronda">
-        <button type="button" data-r="2" aria-pressed="true">Segunda ronda</button>
         <button type="button" data-r="1" aria-pressed="false">Primera ronda</button>
+        <button type="button" data-r="2" aria-pressed="true">Segunda ronda</button>
+        <button type="button" data-r="3" aria-pressed="false" id="po-btn" hidden>Playoff</button>
       </div>
       <div class="seg red" id="seg-filter" role="group" aria-label="Filtro">
         <button type="button" data-f="all" aria-pressed="true">Todos</button>
@@ -198,6 +199,6 @@
 <!-- ############################################################ -->
 <!-- SCRIPT PRINCIPAL -->
 <!-- ############################################################ -->
-<script src="js/app.js?v=20261028j"></script>
+<script src="js/app.js?v=20261116e"></script>
 </body>
 </html>

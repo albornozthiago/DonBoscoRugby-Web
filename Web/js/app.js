@@ -87,33 +87,37 @@
   // ############################################################
   /* con data/playoff.json en juega:true (terminadas las 26 fechas y Don Bosco 2º a 5º; lo escribe scripts/actualizar_resultados.py)
      el próximo partido pasa a ser la semifinal de ascenso */
-  if ($("nx-tab")) {
-    fetch("data/playoff.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (o) {
-      if (!o.juega) return;
-      var f = o.final && o.final.db === undefined ? o.final : null;
-      if (!f && o.db !== undefined) {
-        // semi jugada: se muestra el resultado hasta que la URBA cargue la final
-        var gano = o.db > o.rv;
-        $("nx-eyebrow").textContent = "Playoff de ascenso · Semifinal";
-        $("nx-tab").innerHTML = '<span class="d">SF</span><span class="m">Playoff</span>';
-        $("nx-vs").innerHTML = crest(o.rival) + "<span>" + (o.local ? "Don Bosco " + o.db + " – " + o.rv + " " + esc(o.rival) : esc(o.rival) + " " + o.rv + " – " + o.db + " Don Bosco") + "</span>";
-        $("nx-sub").textContent = gano ? "Ganamos y pasamos a la final" : "Quedamos eliminados";
-        $("nx-days").textContent = gano ? "Final: fecha a confirmar" : "";
-        return;
-      }
-      if (f) {
-        if ($("nx-last") && o.db !== undefined) $("nx-last").textContent = "Semifinal: " + (o.local ? "Don Bosco " + o.db + " – " + o.rv + " " + o.rival : o.rival + " " + o.rv + " – " + o.db + " Don Bosco");
-        o = f;
-      }
-      var d = o.fecha ? pd(o.fecha) : null;
-      $("nx-eyebrow").textContent = "Próximo partido · Playoff de ascenso";
-      $("nx-tab").innerHTML = d ? '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>' : '<span class="d">SF</span><span class="m">Playoff</span>';
-      $("nx-vs").innerHTML = crest(o.rival) + "<span>vs " + esc(o.rival) + "</span>";
-      $("nx-sub").textContent = (f ? "Final" : "Semifinal") + " · " + (o.sede ? o.sede : o.local ? "Local · Predio de Bernal" : "Visitante") + (o.hora ? " · " + o.hora + " hs" : "");
-      var diff = d ? Math.round((d - today) / 86400000) : null;
-      $("nx-days").textContent = diff === null ? "" : diff <= 0 ? "Se juega hoy" : (diff === 1 ? "Falta 1 día" : "Faltan " + diff + " días");
-    }).catch(function () {});
-  }
+  var PO = [];
+  function poScore(o) { return o.local ? "Don Bosco " + o.db + " – " + o.rv + " " + o.rival : o.rival + " " + o.rv + " – " + o.db + " Don Bosco"; }
+  fetch("data/playoff.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (o) {
+    if (!o.juega) return;
+    var fin = o.final || null;
+    PO.push({ n: "Semifinal", o: o });
+    if (fin) PO.push({ n: "Final", o: fin });
+    var pb = $("po-btn");
+    if (pb) { pb.hidden = false; renderFx(); }
+    if (!$("nx-tab")) return;
+    var semiOk = o.db !== undefined, finOk = fin && fin.db !== undefined;
+    var ult = finOk ? fin : semiOk && !fin ? o : null;   // último partido de playoff ya jugado
+    if (ult) {
+      var gano = ult.db > ult.rv, esFinal = ult === fin;
+      $("nx-eyebrow").textContent = "Playoff de ascenso · " + (esFinal ? "Final" : "Semifinal");
+      $("nx-tab").innerHTML = '<span class="d">' + (esFinal ? "F" : "SF") + '</span><span class="m">Playoff</span>';
+      $("nx-vs").innerHTML = crest(ult.rival) + "<span>" + esc(poScore(ult)) + "</span>";
+      $("nx-sub").textContent = esFinal ? (gano ? "¡Ascendimos a Primera A!" : "Cayó la final, seguimos en Primera B") : (gano ? "Ganamos y pasamos a la final" : "Quedamos eliminados");
+      $("nx-days").textContent = !esFinal && gano ? "Final: fecha a confirmar" : "";
+      if ($("nx-last") && esFinal && semiOk) $("nx-last").textContent = "Semifinal: " + poScore(o);
+      return;
+    }
+    if (fin && $("nx-last") && semiOk) $("nx-last").textContent = "Semifinal: " + poScore(o);
+    var x = fin || o, d = x.fecha ? pd(x.fecha) : null;
+    $("nx-eyebrow").textContent = "Próximo partido · Playoff de ascenso";
+    $("nx-tab").innerHTML = d ? '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>' : '<span class="d">SF</span><span class="m">Playoff</span>';
+    $("nx-vs").innerHTML = crest(x.rival) + "<span>vs " + esc(x.rival) + "</span>";
+    $("nx-sub").textContent = (fin ? "Final" : "Semifinal") + " · " + (x.sede ? x.sede : x.local ? "Local · Predio de Bernal" : "Visitante") + (x.hora ? " · " + x.hora + " hs" : "");
+    var diff = d ? Math.round((d - today) / 86400000) : null;
+    $("nx-days").textContent = diff === null ? "" : diff <= 0 ? "Se juega hoy" : (diff === 1 ? "Falta 1 día" : "Faltan " + diff + " días");
+  }).catch(function () {});
 
   // ############################################################
   // ESTADÍSTICAS Y RACHA
@@ -147,6 +151,17 @@
   var round = nextIdx >= 0 && nextIdx < 13 ? 1 : 2, filt = "all";
   function renderFx() {
     if (!$("fixture-list")) return;
+    if (round === 3) {
+      document.getElementById("fixture-list").innerHTML = PO.map(function (q) {
+        var o = q.o, d = o.fecha ? pd(o.fecha) : null, ok = o.db !== undefined, r = o.db > o.rv ? "G" : "P", sc;
+        sc = ok ? '<div class="score' + (r === "G" ? "" : " loss") + '">' + o.db + ' – ' + o.rv + '<small>' + (r === "G" ? "Ganó" : "Perdió") + '</small></div>' : '<div class="score todo">A confirmar</div>';
+        return '<li class="fx ' + (o.local ? "local" : "visit") + '">' +
+          '<div class="tab">' + (d ? '<span class="d">' + pad(d.getDate()) + '</span><span class="m">' + MES[d.getMonth()] + '</span>' : '<span class="d">' + (q.n === "Final" ? "F" : "SF") + '</span>') + '</div>' +
+          '<div><div class="tag"><b>' + q.n + '</b><em>' + (o.sede ? esc(o.sede) : o.local ? "Local vs." : "Visitante vs.") + '</em></div><p class="rival">' + crest(o.rival) + '<span>' + esc(o.rival) + '</span></p></div>' + sc + '</li>';
+      }).join("");
+      document.getElementById("round-label").textContent = "Playoff de ascenso";
+      return;
+    }
     var items = M.filter(function (m) {
       if ((round === 1) !== (m[0] <= 13)) return false;
       if (filt === "L" || filt === "V") return m[3] === filt;
@@ -184,6 +199,7 @@
   }
   if ($("seg-round")) bind("seg-round", "data-r", function (v) { round = +v; renderFx(); });
   if ($("seg-filter")) bind("seg-filter", "data-f", function (v) { filt = v; renderFx(); });
+  if ($("seg-round")) $("seg-round").addEventListener("click", function () { $("seg-filter").hidden = round === 3; });
   if ($("seg-round")) (function () {
     var bs = document.querySelectorAll("#seg-round button");
     Array.prototype.forEach.call(bs, function (b) { b.setAttribute("aria-pressed", +b.getAttribute("data-r") === round ? "true" : "false"); });
